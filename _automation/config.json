@@ -1,0 +1,21 @@
+{
+  "authorName": "superfortune",
+  "authorEmail": "sfortunepassion0908@outlook.com",
+  "dateRange": {
+    "start": "2024-01-01",
+    "end": "2024-12-31"
+  },
+  "limits": {
+    "maxTotalCommits": 600,
+    "maxPerDay": 2,
+    "maxFirstOfMonth": 3
+  },
+  "remote": "origin",
+  "remoteUrl": "https://github.com/superfortune-passion/github_actions_js",
+  "baseBranch": "main",
+  "targetCommits": 600,
+  "pushMode": "main-only",
+  "wipeRemoteRepo": true,
+  "seed": 20240610,
+  "excludePaths": ["_automation", "node_modules", "lib", "dist", "coverage"]
+}

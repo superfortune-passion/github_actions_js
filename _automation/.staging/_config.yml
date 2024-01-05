@@ -1,0 +1,13 @@
+title: GitHub Actions Manager
+description: Nice and a bit shy CLI tool to install and update GitHub Actions
+theme: jekyll-theme-cayman
+plugins:
+  - jekyll-relative-links
+relative_links:
+  enabled: true
+  collections: true
+include:
+  - README.md
+  - nodejs_workflows/README.md
+  - python_workflows/README.md
+  - CONTRIBUTING.md
