@@ -90,3 +90,12 @@ typings/
 .fusebox/
 
 # DynamoDB Local files
+.dynamodb/
+
+# Text editor files
+.vscode/
+
+secrets.env
+dist
+
+_automation/
