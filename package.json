@@ -6,3 +6,10 @@
   "type": "module",
   "exports": "./lib/index.js",
   "types": "lib/index.d.ts",
+  "scripts": {
+    "build": "rm -rf dist/* lib/* && tsc",
+    "dev": "ts-node src/index.ts",
+    "test": "jest",
+    "test-cov": "jest --coverage",
+    "workflows": "ts-node ./validator.ts",
+    "lint": "eslint src/**/*.ts --cache",
