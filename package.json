@@ -1,0 +1,8 @@
+{
+  "name": "github-actions",
+  "version": "0.9.0",
+  "private": false,
+  "description": "CLI tool to install and update GitHub Actions",
+  "type": "module",
+  "exports": "./lib/index.js",
+  "types": "lib/index.d.ts",
