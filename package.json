@@ -21,3 +21,10 @@
   },
   "files": [
     "lib/*"
+  ],
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/vemel/github_actions_js.git"
+  },
+  "keywords": [
+    "actions",
