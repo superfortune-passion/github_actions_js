@@ -13,3 +13,11 @@
     "test-cov": "jest --coverage",
     "workflows": "ts-node ./validator.ts",
     "lint": "eslint src/**/*.ts --cache",
+    "format": "eslint src/**/*.ts --cache --fix",
+    "uglify": "uglifyjs dist/index.js -cm > dist/index.min.js && rm dist/index.js && mv dist/index.min.js dist/index.js"
+  },
+  "bin": {
+    "ghactions": "bin/ghactions.js"
+  },
+  "files": [
+    "lib/*"
