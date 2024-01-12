@@ -28,3 +28,10 @@
   },
   "keywords": [
     "actions",
+    "node",
+    "version",
+    "pep440",
+    "semver"
+  ],
+  "author": "Vlad Emelianov",
+  "license": "MIT",
