@@ -35,3 +35,11 @@
   ],
   "author": "Vlad Emelianov",
   "license": "MIT",
+  "dependencies": {
+    "chalk": "^5.2.0",
+    "command-line-args": "^5.1.1",
+    "command-line-usage": "^7.0.1",
+    "configstore": "^6.0.0",
+    "deep-equal": "^2.0.5",
+    "diff": "^5.0.0",
+    "inquirer": "^9.1.5",
