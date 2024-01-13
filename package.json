@@ -43,3 +43,10 @@
     "deep-equal": "^2.0.5",
     "diff": "^5.0.0",
     "inquirer": "^9.1.5",
+    "inquirer-select-directory": "^1.2.0",
+    "js-yaml": "^4.0.0",
+    "node-fetch": "^3.3.1"
+  },
+  "devDependencies": {
+    "@types/command-line-args": "^5.0.0",
+    "@types/command-line-usage": "^5.0.1",
