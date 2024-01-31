@@ -20,3 +20,8 @@
   "plugins": [
     "@typescript-eslint",
     "simple-import-sort",
+    "jest"
+  ],
+  "rules": {
+    "import/first": "error",
+    "import/newline-after-import": "error",
