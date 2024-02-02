@@ -30,3 +30,8 @@
     "simple-import-sort/exports": "error",
     "no-constant-condition": "off"
   },
+  "ignorePatterns": [
+    "bin/*.js",
+    "lib/**/*.js"
+  ]
+}
