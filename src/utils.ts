@@ -4,3 +4,8 @@ import os from "os";
 import path from "path";
 
 import { UTF8 } from "./constants.js";
+
+export function decapitalize(s: string): string {
+    if (!s) return s;
+    return `${s[0].toLowerCase()}${s.substr(1)}`;
+}
