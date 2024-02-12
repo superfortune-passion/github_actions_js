@@ -16,3 +16,9 @@ export function getCommandName(): string {
 
 export function getCommandArgs(): string {
     return process.argv.slice(2).join(" ");
+}
+
+export function getVersionString(): string {
+    const rootPath = path.dirname(path.dirname(__filename));
+    const packageJSONPath = path.join(rootPath, "package.json");
+    if (!fs.existsSync(packageJSONPath)) return "unknown";
