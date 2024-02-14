@@ -27,3 +27,10 @@ export function getVersionString(): string {
     );
     return `${packageJSON.name} ${packageJSON.version}`;
 }
+
+export function getTempDir(): string {
+    return fs.mkdtempSync(path.join(os.tmpdir(), "ghactions-"));
+}
+
+export function yamlDump(data: unknown): string {
+    return yaml.dump(data, {
