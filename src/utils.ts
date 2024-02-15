@@ -34,3 +34,7 @@ export function getTempDir(): string {
 
 export function yamlDump(data: unknown): string {
     return yaml.dump(data, {
+        lineWidth: 999,
+        quotingType: '"'
+    });
+}
