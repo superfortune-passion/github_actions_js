@@ -28,3 +28,12 @@ export async function download(url: string): Promise<string> {
             fs.rmSync(tempPath, { recursive: true, force: true });
         });
         request.on("error", function (err) {
+            fs.rmSync(tempPath, { recursive: true, force: true });
+            reject(err);
+        });
+        file.on("error", err => {
+            fs.rmSync(tempPath, { recursive: true, force: true });
+            reject(err);
+        });
+    });
+}
