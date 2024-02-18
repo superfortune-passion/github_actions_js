@@ -18,3 +18,13 @@ export async function download(url: string): Promise<string> {
     const dest = path.join(tempPath, path.basename(url));
     const file = fs.createWriteStream(dest);
     const getFunc = parsedUrl.protocol === "https:" ? https.get : http.get;
+    return new Promise((resolve, reject) => {
+        const request = getFunc(url, function (response) {
+            response.pipe(file);
+        });
+        file.on("finish", function () {
+            file.close();
+            resolve(fs.readFileSync(dest, { encoding: UTF8 }));
+            fs.rmSync(tempPath, { recursive: true, force: true });
+        });
+        request.on("error", function (err) {
