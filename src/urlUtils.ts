@@ -37,3 +37,12 @@ export async function download(url: string): Promise<string> {
         });
     });
 }
+
+export function joinURL(base: string, newPath: string): string {
+    const url = new URL(base);
+    let oldPathname = url.pathname;
+    const origin = base.substr(0, base.length - url.pathname.length);
+    if (!base.endsWith("/")) oldPathname = path.dirname(oldPathname);
+    const pathname = path.join(oldPathname, newPath);
+    return `${origin}${pathname}`;
+}
