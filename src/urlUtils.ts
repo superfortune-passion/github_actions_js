@@ -46,3 +46,14 @@ export function joinURL(base: string, newPath: string): string {
     const pathname = path.join(oldPathname, newPath);
     return `${origin}${pathname}`;
 }
+
+export function isGitHubURL(url: string): boolean {
+    try {
+        const hostname = new URL(url).hostname;
+        return hostname === "github.com" || hostname.endsWith(".github.com");
+    } catch {
+        return false;
+    }
+}
+
+export function isFileURL(url: string): boolean {
