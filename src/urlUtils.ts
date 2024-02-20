@@ -57,3 +57,12 @@ export function isGitHubURL(url: string): boolean {
 }
 
 export function isFileURL(url: string): boolean {
+    try {
+        return new URL(url).protocol === "file:";
+    } catch {
+        return false;
+    }
+}
+
+export function highlightURL(url: string): string {
+    if (isGitHubURL(url)) {
