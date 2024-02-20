@@ -66,3 +66,13 @@ export function isFileURL(url: string): boolean {
 
 export function highlightURL(url: string): string {
     if (isGitHubURL(url)) {
+        const parsedURL = new URL(url);
+        const [, owner, repo, tree, ref, ...directories] =
+            parsedURL.pathname.split("/");
+        return `${chalk.grey(parsedURL.origin)}/${chalk.blue(
+            owner
+        )}/${chalk.blue(repo)}/${chalk.grey(tree)}/${chalk.grey(
+            ref
+        )}/${directories.join("/")}`;
+    }
+    if (isFileURL(url)) {
