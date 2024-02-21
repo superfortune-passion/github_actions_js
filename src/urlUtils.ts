@@ -86,3 +86,11 @@ export function replaceRef(url: string, ref: string): string {
     if (isGitHubURL(url)) {
         const parsedURL = new URL(url);
         const [, owner, repo, tree, oldRef, ...directories] =
+            parsedURL.pathname.split("/");
+        const pathname = directories.join("/") || ".github/workflows";
+        parsedURL.pathname = `${owner}/${repo}/${tree || "tree"}/${ref || oldRef || "master"
+            }/${pathname}`;
+        return parsedURL.href;
+    }
+    return url;
+}
