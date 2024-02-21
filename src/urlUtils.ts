@@ -76,3 +76,13 @@ export function highlightURL(url: string): string {
         )}/${directories.join("/")}`;
     }
     if (isFileURL(url)) {
+        const parsedURL = new URL(url);
+        return `${chalk.grey("file://")}${parsedURL.pathname}`;
+    }
+    return url;
+}
+
+export function replaceRef(url: string, ref: string): string {
+    if (isGitHubURL(url)) {
+        const parsedURL = new URL(url);
+        const [, owner, repo, tree, oldRef, ...directories] =
