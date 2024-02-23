@@ -12,3 +12,10 @@ async function api(
     token?: string
 ): Promise<unknown> {
     const response = await fetch(`https://api.${hostname}/repos/${endpoint}`, {
+        headers: token
+            ? {
+                Authorization: `Bearer ${token}`
+            }
+            : undefined
+    });
+    const result = await response.json() as IResponse;
