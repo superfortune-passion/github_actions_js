@@ -26,3 +26,9 @@ async function api(
     if (result.message) {
         throw new Error(result.message);
     }
+    return result;
+}
+
+interface IFile {
+    type: string;
+    path: string;
