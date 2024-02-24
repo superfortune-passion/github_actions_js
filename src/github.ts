@@ -19,3 +19,10 @@ async function api(
             : undefined
     });
     const result = await response.json() as IResponse;
+    if (result.message === "Not Found") {
+        return [];
+    }
+
+    if (result.message) {
+        throw new Error(result.message);
+    }
