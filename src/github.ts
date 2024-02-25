@@ -32,3 +32,10 @@ async function api(
 interface IFile {
     type: string;
     path: string;
+    download_url: string;
+}
+
+async function listFiles(
+    hostname: string,
+    user: string,
+    repository: string,
