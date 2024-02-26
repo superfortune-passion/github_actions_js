@@ -46,3 +46,10 @@ async function listFiles(
     const contents = (await api(
         hostname,
         `${user}/${repository}/contents/${directory}?ref=${ref}`,
+        token
+    )) as Array<IFile>;
+
+    return contents
+        .filter(item => item.type === "file")
+        .map(item => item.download_url);
+}
