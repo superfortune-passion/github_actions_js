@@ -39,3 +39,10 @@ async function listFiles(
     hostname: string,
     user: string,
     repository: string,
+    ref: string,
+    directory: string,
+    token?: string
+): Promise<Array<string>> {
+    const contents = (await api(
+        hostname,
+        `${user}/${repository}/contents/${directory}?ref=${ref}`,
