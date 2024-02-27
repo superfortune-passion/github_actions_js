@@ -53,3 +53,10 @@ async function listFiles(
         .filter(item => item.type === "file")
         .map(item => item.download_url);
 }
+
+export async function listWorkflowURLs(url: string): Promise<Array<string>> {
+    const parsedURL = new URL(url);
+    const [, user, repo, , ref, ...directories] = parsedURL.pathname.split("/");
+    return await listFiles(
+        parsedURL.hostname,
+        user,
