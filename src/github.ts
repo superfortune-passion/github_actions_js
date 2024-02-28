@@ -60,3 +60,8 @@ export async function listWorkflowURLs(url: string): Promise<Array<string>> {
     return await listFiles(
         parsedURL.hostname,
         user,
+        repo,
+        ref,
+        path.join(...directories)
+    );
+}
