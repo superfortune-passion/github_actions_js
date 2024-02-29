@@ -5,3 +5,9 @@ export interface IIndex {
     url: string;
     title: string;
     shortcut: string;
+}
+
+export const INDEXES: Array<IIndex> = [
+    {
+        url: JS_INDEX_URL,
+        title: "Node.js",
