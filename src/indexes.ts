@@ -11,3 +11,9 @@ export const INDEXES: Array<IIndex> = [
     {
         url: JS_INDEX_URL,
         title: "Node.js",
+        shortcut: "node"
+    },
+    {
+        url: "https://github.com/vemel/github_actions_js/tree/main/python_workflows",
+        title: "Python",
+        shortcut: "python"
