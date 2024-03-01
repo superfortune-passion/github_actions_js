@@ -17,3 +17,10 @@ export const INDEXES: Array<IIndex> = [
         url: "https://github.com/vemel/github_actions_js/tree/main/python_workflows",
         title: "Python",
         shortcut: "python"
+    },
+    {
+        url: "https://github.com/actions-rs/example/tree/master/.github/workflows",
+        title: "Rust",
+        shortcut: "rust"
+    },
+    {
