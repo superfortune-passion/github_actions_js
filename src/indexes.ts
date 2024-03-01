@@ -24,3 +24,9 @@ export const INDEXES: Array<IIndex> = [
         shortcut: "rust"
     },
     {
+        url: "https://github.com/mvdan/github-actions-golang/tree/master/.github/workflows",
+        title: "Go",
+        shortcut: "go"
+    },
+    {
+        url: "https://github.com/dflook/terraform-github-actions/tree/master/example_workflows",
