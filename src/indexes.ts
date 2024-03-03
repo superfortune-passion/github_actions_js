@@ -36,3 +36,10 @@ export const INDEXES: Array<IIndex> = [
     {
         url: "https://github.com/julia-actions/Example.jl/tree/action-tests/.github/workflows",
         title: "Julia",
+        shortcut: "julia"
+    }
+];
+
+export function getIndexURL(url: string): string {
+    for (const index of INDEXES) {
+        if (index.url === url || index.shortcut === url) return index.url;
