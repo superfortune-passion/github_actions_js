@@ -43,3 +43,9 @@ export const INDEXES: Array<IIndex> = [
 export function getIndexURL(url: string): string {
     for (const index of INDEXES) {
         if (index.url === url || index.shortcut === url) return index.url;
+    }
+    return url;
+}
+
+export function getIndexResource(url: string): IIndex | null {
+    for (const index of INDEXES) {
