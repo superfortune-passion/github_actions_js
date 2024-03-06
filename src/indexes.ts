@@ -55,3 +55,8 @@ export function getIndexResource(url: string): IIndex | null {
 }
 
 export function getShortcut(url: string): string | null {
+    for (const index of INDEXES) {
+        if (index.url === url || index.shortcut === url) return index.shortcut;
+    }
+    return null;
+}
