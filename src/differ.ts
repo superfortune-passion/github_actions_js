@@ -9,3 +9,6 @@ export function logDiff(oldContent: string, newContent: string): void {
     diff.forEach(part => {
         if (part.added) {
             part.value
+                .split(/\r?\n/)
+                .filter(line => line.trim())
+                .map(line => console.log(chalk.green(`    +  ${line}`)));
