@@ -16,3 +16,6 @@ export function logDiff(oldContent: string, newContent: string): void {
         if (part.removed) {
             part.value
                 .split(/\r?\n/)
+                .filter(line => line.trim())
+                .map(line => console.log(chalk.red(`    -  ${line}`)));
+        }
