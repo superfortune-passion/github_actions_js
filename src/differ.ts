@@ -12,3 +12,7 @@ export function logDiff(oldContent: string, newContent: string): void {
                 .split(/\r?\n/)
                 .filter(line => line.trim())
                 .map(line => console.log(chalk.green(`    +  ${line}`)));
+        }
+        if (part.removed) {
+            part.value
+                .split(/\r?\n/)
