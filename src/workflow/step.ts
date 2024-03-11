@@ -14,3 +14,19 @@ interface IStepWith {
 export interface IStepData {
     name?: string;
     id?: string;
+    uses?: string;
+    with?: IStepWith;
+    env?: IEnv;
+    run?: string;
+    [index: string]: unknown;
+}
+
+export class Step {
+    data: IStepData;
+    constructor(data: IStepData) {
+        this.data = data;
+    }
+
+    get id(): string | null {
+        return this.data.id || null;
+    }
