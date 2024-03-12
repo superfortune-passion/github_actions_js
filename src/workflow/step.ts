@@ -46,3 +46,19 @@ export class Step {
 
     isManaged(): boolean {
         if (this.data.with?.["github-actions-managed"]) return true;
+        if (this.data.run) {
+            const lines = this.data.run.split(/\r?\n/).map(x => x.trim());
+            if (lines.includes("# github-actions-managed: true")) return true;
+        }
+        if (this.data.with?.script) {
+            const lines = this.data.with.script
+                .split(/\r?\n/)
+                .map(x => x.trim());
+            if (lines.includes("// github-actions-managed: true")) return true;
+        }
+        return false;
+    }
+
+    makeNonManaged(): Step {
+        if (!this.isManaged()) return this;
+        if (
