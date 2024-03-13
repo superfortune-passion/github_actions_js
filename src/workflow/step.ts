@@ -94,3 +94,19 @@ export class Step {
         if (this.isManaged()) return this;
         if (this.data.run) {
             if (this.data.run.includes("\n")) {
+                const lines: Array<string> = [
+                    "# github-actions-managed: true",
+                    ...this.data.run
+                        .split(/\r?\n/)
+                        .filter((l, i) => i || l.trim())
+                ];
+                this.data.run = lines.join("\n");
+            } else {
+                this.data.run = `# github-actions-managed: true\n${this.data.run}`;
+            }
+            return this;
+        }
+        if (this.data.with?.script) {
+            if (this.data.with.script.includes("\n")) {
+                const lines: Array<string> = [
+                    "// github-actions-managed: true",
