@@ -78,3 +78,19 @@ export class Step {
             const lines: Array<string> = this.data.with.script
                 .split(/\r?\n/)
                 .filter((l, i) => i || l.trim())
+                .filter(l => l.trim() !== "// github-actions-managed: true");
+            this.data.with.script = lines.join("\n");
+        }
+        if (this.data.with?.["github-actions-managed"]) {
+            delete this.data.with["github-actions-managed"];
+            if (Object.keys(this.data.with).length === 0) {
+                delete this.data.with;
+            }
+        }
+        return this;
+    }
+
+    makeManaged(): Step {
+        if (this.isManaged()) return this;
+        if (this.data.run) {
+            if (this.data.run.includes("\n")) {
