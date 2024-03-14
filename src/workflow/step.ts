@@ -110,3 +110,19 @@ export class Step {
             if (this.data.with.script.includes("\n")) {
                 const lines: Array<string> = [
                     "// github-actions-managed: true",
+                    ...this.data.with.script
+                        .split(/\r?\n/)
+                        .filter((l, i) => i || l.trim())
+                ];
+                this.data.with.script = lines.join("\n");
+            } else {
+                this.data.with.script = `// github-actions-managed: true\n${this.data.with.script}`;
+            }
+            return this;
+        }
+        if (this.data.with?.["github-actions-managed"] !== undefined) {
+            this.data.with["github-actions-managed"] = true;
+            return this;
+        }
+        this.data.with = {
+            "github-actions-managed": true,
