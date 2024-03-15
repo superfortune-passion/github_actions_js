@@ -142,3 +142,17 @@ export class Step {
 
     equals(step: Step): boolean {
         return equal(this.data, step.data);
+    }
+
+    findIndex(steps: Array<Step>): number {
+        for (let i = 0; i < steps.length; i++) {
+            if (this.isSame(steps[i])) return i;
+        }
+        return -1;
+    }
+
+    clone(): Step {
+        const newData = JSON.parse(JSON.stringify(this.data));
+        return new Step(newData);
+    }
+}
