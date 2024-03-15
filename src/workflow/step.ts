@@ -126,3 +126,19 @@ export class Step {
         }
         this.data.with = {
             "github-actions-managed": true,
+            ...(this.data.with || {})
+        };
+        return this;
+    }
+
+    isSame(step: Step): boolean {
+        if (this.id && step.id) return this.id === step.id;
+        if (this.name && step.name) return this.name === step.name;
+        if (this.uses && step.uses) return this.uses === step.uses;
+        return this.clone()
+            .makeNonManaged()
+            .equals(step.clone().makeNonManaged());
+    }
+
+    equals(step: Step): boolean {
+        return equal(this.data, step.data);
