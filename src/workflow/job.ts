@@ -18,3 +18,12 @@ export interface IJobData {
 
 export class Job {
     name: string;
+    data: IJobData;
+
+    constructor(name: string, data: IJobData) {
+        this.name = name;
+        this.data = data;
+    }
+
+    get title(): string {
+        return `job ${this.name}`;
