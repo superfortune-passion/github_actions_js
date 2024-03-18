@@ -27,3 +27,13 @@ export class Job {
 
     get title(): string {
         return `job ${this.name}`;
+    }
+
+    get runsOn(): string {
+        return this.data["runs-on"];
+    }
+    set runsOn(value: string) {
+        this.data["runs-on"] = value;
+    }
+
+    get strategy(): IStrategy | undefined {
