@@ -37,3 +37,12 @@ export class Job {
     }
 
     get strategy(): IStrategy | undefined {
+        return this.data.strategy;
+    }
+    set strategy(value: IStrategy | undefined) {
+        if (value) this.data.strategy = value;
+        else delete this.data.strategy;
+    }
+
+    get runsIf(): string | undefined {
+        return this.data.if;
