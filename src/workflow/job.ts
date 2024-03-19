@@ -46,3 +46,13 @@ export class Job {
 
     get runsIf(): string | undefined {
         return this.data.if;
+    }
+    set runsIf(value: string | undefined) {
+        if (value) this.data.if = value;
+        else delete this.data.if;
+    }
+
+    get env(): IEnv | undefined {
+        return this.data.env;
+    }
+    set env(value: IEnv | undefined) {
