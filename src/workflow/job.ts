@@ -56,3 +56,13 @@ export class Job {
         return this.data.env;
     }
     set env(value: IEnv | undefined) {
+        if (value) this.data.env = value;
+        else delete this.data.env;
+    }
+
+    get steps(): Array<Step> {
+        return this.data.steps.map(data => new Step(data));
+    }
+
+    set steps(value: Array<Step>) {
+        this.data.steps = value.map(step => step.data);
