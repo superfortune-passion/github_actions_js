@@ -74,3 +74,14 @@ export class Job {
         newSteps.reverse().forEach(newStep => {
             const localStepIndex = newStep.findIndex(localSteps);
             if (localStepIndex < 0) return result.push(newStep);
+
+            const [localStep, ...followSteps] =
+                localSteps.splice(localStepIndex);
+            result.push(
+                ...followSteps.reverse().filter(step => !step.isManaged())
+            );
+            if (!localStep.isManaged()) return result.push(localStep);
+
+            result.push(newStep);
+        });
+        result.push(...localSteps.reverse().filter(step => !step.isManaged()));
