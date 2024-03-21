@@ -66,3 +66,11 @@ export class Job {
 
     set steps(value: Array<Step>) {
         this.data.steps = value.map(step => step.data);
+    }
+
+    mergeSteps(newSteps: Array<Step>): Array<Step> {
+        const result: Array<Step> = [];
+        const localSteps = this.steps;
+        newSteps.reverse().forEach(newStep => {
+            const localStepIndex = newStep.findIndex(localSteps);
+            if (localStepIndex < 0) return result.push(newStep);
