@@ -16,3 +16,12 @@ export interface IWorkflowData {
 export class Workflow {
     data: IWorkflowData;
     commentLines: Array<string>;
+
+    constructor(data: IWorkflowData, commentLines: Array<string>) {
+        this.data = data;
+        this.commentLines = commentLines;
+    }
+
+    get name(): string {
+        return this.data.name;
+    }
