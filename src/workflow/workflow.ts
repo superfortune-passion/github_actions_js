@@ -25,3 +25,11 @@ export class Workflow {
     get name(): string {
         return this.data.name;
     }
+
+    set name(value: string) {
+        this.data.name = value;
+    }
+
+    get triggers(): unknown {
+        return this.data.on;
+    }
