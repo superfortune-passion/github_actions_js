@@ -33,3 +33,13 @@ export class Workflow {
     get triggers(): unknown {
         return this.data.on;
     }
+
+    set triggers(value: unknown) {
+        this.data.on = value;
+    }
+
+    get jobNames(): Array<string> {
+        return Object.keys(this.data.jobs || {});
+    }
+
+    get jobs(): Array<Job> {
