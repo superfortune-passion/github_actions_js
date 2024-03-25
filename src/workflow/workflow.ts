@@ -43,3 +43,11 @@ export class Workflow {
     }
 
     get jobs(): Array<Job> {
+        return this.jobNames.map(name => this.getJob(name));
+    }
+
+    getJob(name: string): Job {
+        const data = this.data.jobs?.[name];
+        if (!data) throw new Error(`Job ${name} not found`);
+        return new Job(name, data);
+    }
