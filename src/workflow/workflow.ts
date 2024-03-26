@@ -60,3 +60,13 @@ export class Workflow {
     deleteJob(name: string): void {
         delete this.data.jobs?.[name];
     }
+
+    render(): string {
+        const comment = this.commentLines
+            .map(line => (line ? `# ${line}` : "#"))
+            .join("\n");
+        const body = yaml.dump(this.data, {
+            lineWidth: 999,
+            quotingType: '"'
+        });
+        return [comment, body].filter(x => x).join("\n\n");
