@@ -51,3 +51,12 @@ export class Workflow {
         if (!data) throw new Error(`Job ${name} not found`);
         return new Job(name, data);
     }
+
+    setJob(job: Job): void {
+        if (!this.data.jobs) this.data.jobs = {};
+        this.data.jobs[job.name] = job.data;
+    }
+
+    deleteJob(name: string): void {
+        delete this.data.jobs?.[name];
+    }
