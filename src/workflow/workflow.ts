@@ -70,3 +70,12 @@ export class Workflow {
             quotingType: '"'
         });
         return [comment, body].filter(x => x).join("\n\n");
+    }
+
+    static fromString(content: string): Workflow {
+        const data = yaml.load(content) as IWorkflowData;
+        const commentLines = content
+            .split(/\r?\n/)
+            .filter(line => line.startsWith("# ") || line === "#")
+            .map(line => line.substr(2));
+        return new Workflow(data, commentLines);
