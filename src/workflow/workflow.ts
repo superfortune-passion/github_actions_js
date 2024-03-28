@@ -79,3 +79,10 @@ export class Workflow {
             .filter(line => line.startsWith("# ") || line === "#")
             .map(line => line.substr(2));
         return new Workflow(data, commentLines);
+    }
+
+    clone(): Workflow {
+        const newData = JSON.parse(JSON.stringify(this.data));
+        return new Workflow(newData, [...this.commentLines]);
+    }
+}
