@@ -13,3 +13,17 @@ type TWorkflowPart =
     | "job environment"
     | "job runner"
     | "job strategy"
+    | "job run condition"
+    | "step"
+    | "workflow";
+
+export type TAction =
+    | "up to date"
+    | "updated"
+    | "deleted"
+    | "added"
+    | "equal"
+    | "kept"
+    | "error";
+
+export class Check {
