@@ -27,3 +27,18 @@ export type TAction =
     | "error";
 
 export class Check {
+    action: TAction;
+    item: TWorkflowPart;
+    force?: boolean;
+    private _oldValue: unknown;
+    private _newValue: unknown;
+
+    constructor(
+        item: TWorkflowPart,
+        action: TAction,
+        force = false,
+        oldValue: unknown = null,
+        newValue: unknown = null
+    ) {
+        this.action = action;
+        this.item = item;
