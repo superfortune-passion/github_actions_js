@@ -42,3 +42,17 @@ export class Check {
     ) {
         this.action = action;
         this.item = item;
+        this.force = force;
+        this._oldValue = oldValue;
+        this._newValue = newValue;
+    }
+
+    private static _dumpValue(value: unknown): string {
+        if (typeof value === "string") return value;
+        if (value === null) return "";
+        if (value instanceof Job) return yamlDump({ [value.name]: value.data });
+        if (value instanceof Step) return yamlDump(value.data);
+        return yamlDump(value);
+    }
+
+    get oldValue(): string {
