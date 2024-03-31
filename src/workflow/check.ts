@@ -56,3 +56,18 @@ export class Check {
     }
 
     get oldValue(): string {
+        return Check._dumpValue(this._oldValue);
+    }
+
+    get newValue(): string {
+        return Check._dumpValue(this._newValue);
+    }
+
+
+    get color(): ChalkInstance {
+        return (
+            {
+                added: chalk.green,
+                updated: chalk.blue,
+                error: chalk.red,
+                deleted: chalk.yellow
