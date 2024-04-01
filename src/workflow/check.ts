@@ -71,3 +71,17 @@ export class Check {
                 updated: chalk.blue,
                 error: chalk.red,
                 deleted: chalk.yellow
+            }[this.action] || chalk.grey
+        );
+    }
+
+    private getTitle(): string {
+        if (this.item === "step") {
+            if (this._oldValue instanceof Step) {
+                return this._oldValue.title;
+            }
+            if (this._newValue instanceof Step) {
+                return this._newValue.title;
+            }
+            return new Step({}).title;
+        }
