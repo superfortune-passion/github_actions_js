@@ -85,3 +85,18 @@ export class Check {
             }
             return new Step({}).title;
         }
+        if (this.item === "job") {
+            if (this._oldValue instanceof Job) {
+                return this._oldValue.title;
+            }
+            if (this._newValue instanceof Job) {
+                return this._newValue.title;
+            }
+            return this.item;
+        }
+        return this.item;
+    }
+
+    private getcheckMessage(verb: string): string {
+        const prefix = `${this.icon}  ${chalk.bold(this.getTitle())}`;
+        if (this.action === "up to date") return `${prefix} is up to date`;
