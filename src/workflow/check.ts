@@ -114,3 +114,18 @@ export class Check {
     }
 
     get noForceMessage(): string {
+        return `${this.icon}  ${chalk.bold(this.getTitle())} can be ${this.action
+            }, use ${chalk.bold("--force")} flag to apply`;
+    }
+
+    get updateMessage(): string {
+        return this.getcheckMessage("");
+    }
+
+    get icon(): string {
+        return (
+            {
+                updated: "↻",
+                deleted: "✖",
+                error: "✗",
+                added: "✎"
