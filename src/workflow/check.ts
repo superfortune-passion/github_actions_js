@@ -100,3 +100,17 @@ export class Check {
     private getcheckMessage(verb: string): string {
         const prefix = `${this.icon}  ${chalk.bold(this.getTitle())}`;
         if (this.action === "up to date") return `${prefix} is up to date`;
+        if (this.action === "error") return `${this.icon}  ${this.oldValue}`;
+
+        verb = verb ? `${verb} ` : "";
+        const message = `${prefix} ${verb}${chalk.bold(this.action)}`;
+        if (this.action === "kept")
+            return `${message}, because it is not managed`;
+        return message;
+    }
+
+    get checkMessage(): string {
+        return this.getcheckMessage("will be");
+    }
+
+    get noForceMessage(): string {
