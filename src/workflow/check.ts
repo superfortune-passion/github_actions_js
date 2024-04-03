@@ -129,3 +129,16 @@ export class Check {
                 deleted: "✖",
                 error: "✗",
                 added: "✎"
+            }[this.action] || "✓"
+        );
+    }
+    isApplied(force: boolean): boolean {
+        if (this.isError()) return false;
+        if (!force && this.force) return false;
+        if (this.action == "equal" || this.action == "kept") return false;
+        return true;
+    }
+    isError(): boolean {
+        return this.action === "error";
+    }
+}
