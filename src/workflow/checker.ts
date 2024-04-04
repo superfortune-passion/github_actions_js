@@ -15,3 +15,20 @@ export class Checker {
     }
 
     getChecks(update: Workflow): Array<Check> {
+        const errors = this.getErrors();
+        if (errors.length) return errors;
+
+        return [
+            ...this.getWorkflowChecks(update),
+            ...this.getJobsChecks(update)
+        ];
+    }
+
+    getStepErrors(currentJob: Job): Array<string> {
+        const stepIds = new Set();
+        const result: Array<string> = [];
+        currentJob.steps.forEach(step => {
+            if (!step.id) return;
+            if (stepIds.has(step.id))
+                result.push(`${step.name} step has duplicate id ${step.id}`);
+        });
