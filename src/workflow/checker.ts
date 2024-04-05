@@ -32,3 +32,19 @@ export class Checker {
             if (stepIds.has(step.id))
                 result.push(`${step.name} step has duplicate id ${step.id}`);
         });
+        return result;
+    }
+
+    getErrors(): Array<Check> {
+        const result = [] as Array<Check>;
+        this.current.jobs.forEach(job => {
+            this.getStepErrors(job).map(
+                error => new Check("error", "error", false, error)
+            );
+        });
+        return result;
+    }
+
+    static getAction(oldValue: unknown, newValue: unknown): TAction {
+        if (equal(oldValue, newValue)) return "equal";
+        if (!oldValue) return "added";
