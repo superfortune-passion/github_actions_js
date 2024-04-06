@@ -65,3 +65,18 @@ export class Checker {
                 update.commentLines.join("\n")
             ),
             new Check(
+                "workflow name",
+                Checker.getAction(this.current.name, update.name),
+                true,
+                this.current.name,
+                update.name
+            ),
+            new Check(
+                "trigger",
+                Checker.getAction(this.current.triggers, update.triggers),
+                true,
+                this.current.triggers,
+                update.triggers
+            )
+        ];
+    }
