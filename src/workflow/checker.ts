@@ -48,3 +48,20 @@ export class Checker {
     static getAction(oldValue: unknown, newValue: unknown): TAction {
         if (equal(oldValue, newValue)) return "equal";
         if (!oldValue) return "added";
+        if (!newValue) return "deleted";
+        return "updated";
+    }
+
+    getWorkflowChecks(update: Workflow): Array<Check> {
+        return [
+            new Check(
+                "top comment",
+                Checker.getAction(
+                    this.current.commentLines,
+                    update.commentLines
+                ),
+                true,
+                this.current.commentLines.join("\n"),
+                update.commentLines.join("\n")
+            ),
+            new Check(
