@@ -80,3 +80,21 @@ export class Checker {
             )
         ];
     }
+
+    getJobsChecks(update: Workflow): Array<Check> {
+        const result = [] as Array<Check>;
+        update.jobNames.forEach(jobName => {
+            const updateJob = update.getJob(jobName);
+            if (!this.current.jobNames.includes(jobName)) {
+                result.push(new Check("job", "added", false, null, updateJob));
+                return;
+            }
+            const currentJob = this.current.getJob(jobName);
+            result.push(...this.getJobChecks(currentJob, updateJob));
+        });
+        this.current.jobNames
+            .filter(jobName => !update.jobNames.includes(jobName))
+            .map(jobName => {
+                const currentJob = this.current.getJob(jobName);
+                result.push(
+                    new Check("job", "deleted", true, currentJob, null)
