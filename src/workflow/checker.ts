@@ -98,3 +98,20 @@ export class Checker {
                 const currentJob = this.current.getJob(jobName);
                 result.push(
                     new Check("job", "deleted", true, currentJob, null)
+                );
+            });
+        return result;
+    }
+
+    getJobChecks(currentJob: Job, updateJob: Job): Array<Check> {
+        return [
+            new Check(
+                "job environment",
+                Checker.getAction(currentJob.env, updateJob.env),
+                true,
+                currentJob.env,
+                updateJob.env
+            ),
+            new Check(
+                "job runner",
+                Checker.getAction(currentJob.runsOn, updateJob.runsOn),
