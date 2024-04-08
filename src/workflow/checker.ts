@@ -131,3 +131,20 @@ export class Checker {
                 Checker.getAction(currentJob.runsIf, updateJob.runsIf),
                 true,
                 currentJob.runsIf,
+                updateJob.runsIf
+            ),
+            ...this.getStepChecks(currentJob, updateJob)
+        ];
+    }
+
+    getStepChecks(currentJob: Job, updateJob: Job): Array<Check> {
+        const currentSteps = currentJob.steps;
+        const updateSteps = updateJob.steps;
+        return [
+            ...currentSteps
+                .filter(step => step.findIndex(updateSteps) < 0)
+                .map(step => new Check("step", "deleted", false, step)),
+            ...updateSteps.map(step => {
+                const stepIndex = step.findIndex(currentSteps);
+                const localStep = currentSteps[stepIndex] || new Step({});
+                return new Check(
