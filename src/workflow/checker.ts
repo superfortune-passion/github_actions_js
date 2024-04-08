@@ -115,3 +115,19 @@ export class Checker {
             new Check(
                 "job runner",
                 Checker.getAction(currentJob.runsOn, updateJob.runsOn),
+                true,
+                currentJob.runsOn,
+                updateJob.runsOn
+            ),
+            new Check(
+                "job strategy",
+                Checker.getAction(currentJob.strategy, updateJob.strategy),
+                true,
+                currentJob.strategy,
+                updateJob.strategy
+            ),
+            new Check(
+                "job run condition",
+                Checker.getAction(currentJob.runsIf, updateJob.runsIf),
+                true,
+                currentJob.runsIf,
