@@ -148,3 +148,18 @@ export class Checker {
                 const stepIndex = step.findIndex(currentSteps);
                 const localStep = currentSteps[stepIndex] || new Step({});
                 return new Check(
+                    "step",
+                    (() => {
+                        if (stepIndex < 0) return "added";
+                        if (!localStep.isManaged()) return "kept";
+                        if (localStep.equals(step)) return "equal";
+                        return "updated";
+                    })() as TAction,
+                    false,
+                    localStep,
+                    step
+                );
+            })
+        ];
+    }
+}
