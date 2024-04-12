@@ -26,3 +26,10 @@ export class Merger {
             if (this.force) currentJob.runsOn = updateJob.runsOn;
             if (this.force) currentJob.runsIf = updateJob.runsIf;
             if (this.force) currentJob.strategy = updateJob.strategy;
+
+            const updateSteps = updateJob.steps.map(step => step.makeManaged());
+            currentJob.steps = currentJob.mergeSteps(updateSteps);
+        });
+        if (this.force)
+            current.jobNames
+                .filter(jobName => !update.jobNames.includes(jobName))
