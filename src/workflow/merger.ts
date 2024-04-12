@@ -19,3 +19,10 @@ export class Merger {
             if (!current.jobNames.includes(jobName)) {
                 current.setJob(updateJob.clone());
                 return;
+            }
+
+            const currentJob = current.getJob(jobName);
+            if (this.force) currentJob.env = updateJob.env;
+            if (this.force) currentJob.runsOn = updateJob.runsOn;
+            if (this.force) currentJob.runsIf = updateJob.runsIf;
+            if (this.force) currentJob.strategy = updateJob.strategy;
