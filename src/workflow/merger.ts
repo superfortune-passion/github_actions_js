@@ -40,3 +40,8 @@ export class Merger {
 
     merge(current: Workflow, update: Workflow): Workflow {
         const result = current.clone();
+        this.mergeWorkflow(result, update);
+        this.mergeJobs(result, update);
+        return result;
+    }
+}
