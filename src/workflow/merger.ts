@@ -33,3 +33,10 @@ export class Merger {
         if (this.force)
             current.jobNames
                 .filter(jobName => !update.jobNames.includes(jobName))
+                .map(jobName => {
+                    current.deleteJob(jobName);
+                });
+    }
+
+    merge(current: Workflow, update: Workflow): Workflow {
+        const result = current.clone();
