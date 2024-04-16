@@ -22,3 +22,10 @@ export class WorkflowResource {
 
     get title(): string | null {
         if (this._local) return this._local.name;
+        if (this._remote) return this._remote.name;
+        return this.name;
+    }
+
+    getTitle(action = "in", color: ChalkInstance = chalk.blue): string {
+        return `${color(this.title)} ${chalk.grey(`${action} ${this.path}`)}`;
+    }
