@@ -29,3 +29,11 @@ export class WorkflowResource {
     getTitle(action = "in", color: ChalkInstance = chalk.blue): string {
         return `${color(this.title)} ${chalk.grey(`${action} ${this.path}`)}`;
     }
+
+    get fileName(): string {
+        return `${this.name}.yml`;
+    }
+
+    existsLocally(): boolean {
+        return fs.existsSync(this.path);
+    }
