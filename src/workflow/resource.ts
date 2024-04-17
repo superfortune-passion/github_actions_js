@@ -37,3 +37,11 @@ export class WorkflowResource {
     existsLocally(): boolean {
         return fs.existsSync(this.path);
     }
+
+    async getLocal(): Promise<Workflow> {
+        if (this._local) return this._local;
+        if (!this.existsLocally()) null;
+        const result = await promisify(fs.readFile)(this.path, {
+            encoding: UTF8
+        });
+        this._local = Workflow.fromString(result);
