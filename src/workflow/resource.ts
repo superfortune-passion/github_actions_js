@@ -45,3 +45,10 @@ export class WorkflowResource {
             encoding: UTF8
         });
         this._local = Workflow.fromString(result);
+        return this._local;
+    }
+
+    async setLocal(data: string): Promise<void> {
+        return promisify(fs.writeFile)(this.path, data, {
+            encoding: UTF8
+        });
