@@ -60,3 +60,11 @@ export class WorkflowResource {
     }
 
     async getRemote(): Promise<Workflow> {
+        if (this._remote) return this._remote;
+        const content = await download(this.url);
+        this._remote = Workflow.fromString(content);
+        this._remote.jobs.forEach(job =>
+            job.steps.map(step => step.makeManaged())
+        );
+        return this._remote;
+    }
