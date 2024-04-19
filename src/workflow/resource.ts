@@ -52,3 +52,11 @@ export class WorkflowResource {
         return promisify(fs.writeFile)(this.path, data, {
             encoding: UTF8
         });
+    }
+
+    reset(): void {
+        this._local = null;
+        this._remote = null;
+    }
+
+    async getRemote(): Promise<Workflow> {
