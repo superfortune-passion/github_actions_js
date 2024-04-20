@@ -68,3 +68,9 @@ export class WorkflowResource {
         );
         return this._remote;
     }
+
+    getRemoteCached(): Workflow {
+        if (this._remote) return this._remote;
+        throw new Error("Remote workflow is not cached yet");
+    }
+}
