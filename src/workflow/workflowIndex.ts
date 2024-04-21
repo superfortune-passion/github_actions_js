@@ -9,3 +9,13 @@ import { WorkflowResource } from "./resource.js";
 
 export class WorkflowIndex {
     url: string;
+    name: string;
+    names: Array<string>;
+    workflowsPath: string;
+    shortcut: string;
+    private _workflows: Array<WorkflowResource>;
+
+    constructor(
+        url: string,
+        workflowsPath: string,
+        workflowURLs: Array<string>
