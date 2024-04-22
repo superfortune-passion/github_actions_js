@@ -19,3 +19,13 @@ export class WorkflowIndex {
         url: string,
         workflowsPath: string,
         workflowURLs: Array<string>
+    ) {
+        this.url = url;
+        this.name = url;
+        this.workflowsPath = workflowsPath;
+        this._workflows = workflowURLs.map(
+            url => new WorkflowResource(url, this.workflowsPath)
+        );
+        this.names = this._workflows.map(w => w.name);
+        this.shortcut = "";
+    }
