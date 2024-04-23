@@ -29,3 +29,13 @@ export class WorkflowIndex {
         this.names = this._workflows.map(w => w.name);
         this.shortcut = "";
     }
+
+    getWorkflow(name: string): WorkflowResource {
+        const workflow = this._workflows.find(w => w.name === name);
+        if (!workflow)
+            throw new Error(`Workflow ${name} does not exist in index`);
+        return workflow;
+    }
+
+    getAllWorkflows(): Array<WorkflowResource> {
+        return this.names.map(name => this.getWorkflow(name));
