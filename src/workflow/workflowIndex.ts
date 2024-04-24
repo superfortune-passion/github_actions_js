@@ -49,3 +49,14 @@ export class WorkflowIndex {
 
     getWorkflows(names: Array<string>): Array<WorkflowResource> {
         const result: Array<WorkflowResource> = [];
+        names.forEach(name => {
+            const workflows: Array<WorkflowResource> = {
+                all: this.getAllWorkflows(),
+                installed: this.getInstalledWorkflows()
+            }[name] || [this.getWorkflow(name)];
+            result.push(
+                ...workflows.filter(
+                    w => !result.map(x => x.name).includes(w.name)
+                )
+            );
+        });
