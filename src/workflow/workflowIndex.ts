@@ -60,3 +60,13 @@ export class WorkflowIndex {
                 )
             );
         });
+        return result;
+    }
+
+    static async fromURL(
+        url: string,
+        workflowsPath: string
+    ): Promise<WorkflowIndex> {
+        if (isFileURL(url))
+            return WorkflowIndex.fromFileURL(url, workflowsPath);
+        if (isGitHubURL(url))
