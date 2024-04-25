@@ -70,3 +70,13 @@ export class WorkflowIndex {
         if (isFileURL(url))
             return WorkflowIndex.fromFileURL(url, workflowsPath);
         if (isGitHubURL(url))
+            return WorkflowIndex.fromGitHubURL(url, workflowsPath);
+        throw new Error(
+            `URL ${url} is not supported, provide https://github.com URL or file url`
+        );
+    }
+
+    static async fromGitHubURL(
+        url: string,
+        workflowsPath: string
+    ): Promise<WorkflowIndex> {
