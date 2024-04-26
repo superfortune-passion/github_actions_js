@@ -90,3 +90,12 @@ export class WorkflowIndex {
     static async fromFileURL(
         url: string,
         workflowsPath: string
+    ): Promise<WorkflowIndex> {
+        const rootPath = fileURLToPath(url);
+        const files = fs.readdirSync(rootPath);
+        const workflows: Array<string> = files
+            .filter(filePath => EXTENSIONS.includes(path.parse(filePath).ext))
+            .map(filePath => pathToFileURL(path.join(rootPath, filePath)).href);
+        return new WorkflowIndex(url, workflowsPath, workflows);
+    }
+}
