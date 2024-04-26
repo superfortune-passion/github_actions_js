@@ -80,3 +80,13 @@ export class WorkflowIndex {
         url: string,
         workflowsPath: string
     ): Promise<WorkflowIndex> {
+        const workflowURLs = (await listWorkflowURLs(url)).filter(url =>
+            EXTENSIONS.includes(path.parse(url).ext)
+        );
+        const result = new WorkflowIndex(url, workflowsPath, workflowURLs);
+        return result;
+    }
+
+    static async fromFileURL(
+        url: string,
+        workflowsPath: string
