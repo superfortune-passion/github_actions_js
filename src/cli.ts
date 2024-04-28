@@ -28,3 +28,18 @@ export function getHelp(): string {
                 `Documentation: ${DOCS_URL}`,
                 "",
                 "{bold ghactions} - Run in interactive mode",
+                "{bold ghactions -i node} - Manage workflows for Node.js projects",
+                "{bold ghactions -i python} - Manage workflows for Python projects"
+            ].join("\n")
+        },
+        {
+            header: "Options",
+            optionList: [
+                {
+                    name: "names",
+                    alias: "n",
+                    typeLabel: "name",
+                    multiple: true,
+                    description: `Workflow name {bold <name>}.yml, {bold all}, or {bold installed}, default: {bold interactive mode}`
+                },
+                {
