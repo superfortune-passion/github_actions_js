@@ -43,3 +43,17 @@ export function getHelp(): string {
                     description: `Workflow name {bold <name>}.yml, {bold all}, or {bold installed}, default: {bold interactive mode}`
                 },
                 {
+                    name: "index",
+                    alias: "i",
+                    typeLabel: "url",
+                    description:
+                        "Link to workflows directory {bold .github/workflows}",
+                    type: String
+                },
+                {
+                    name: "ref",
+                    alias: "r",
+                    typeLabel: "version",
+                    description: "Update workflows to a specific tag/branch"
+                },
+                {
