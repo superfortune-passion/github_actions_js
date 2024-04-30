@@ -57,3 +57,18 @@ export function getHelp(): string {
                     description: "Update workflows to a specific tag/branch"
                 },
                 {
+                    name: "path",
+                    alias: "p",
+                    typeLabel: "path",
+                    description: `Path to GitHub project root, default {bold CWD}`,
+                    type: Boolean
+                },
+                {
+                    name: "update",
+                    alias: "u",
+                    description: "Apply suggested changes",
+                    type: Boolean
+                },
+                {
+                    name: "force",
+                    alias: "f",
