@@ -72,3 +72,18 @@ export function getHelp(): string {
                 {
                     name: "force",
                     alias: "f",
+                    description: "Update user-managed workflow parts",
+                    type: Boolean
+                },
+                {
+                    name: "list",
+                    alias: "l",
+                    description: "List available workflows",
+                    type: Boolean
+                },
+                {
+                    name: "diff",
+                    alias: "d",
+                    description: "Show diff for update and check runs",
+                    type: Boolean
+                },
