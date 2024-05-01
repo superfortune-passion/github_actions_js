@@ -87,3 +87,17 @@ export function getHelp(): string {
                     description: "Show diff for update and check runs",
                     type: Boolean
                 },
+                {
+                    name: "clean",
+                    alias: "c",
+                    description:
+                        "Do not add {bold github-actions-managed} marker to workflow steps",
+                    type: Boolean
+                },
+                {
+                    name: "help",
+                    alias: "h",
+                    description: "Print this usage guide",
+                    type: Boolean
+                },
+                {
