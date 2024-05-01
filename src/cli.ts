@@ -101,3 +101,18 @@ export function getHelp(): string {
                     type: Boolean
                 },
                 {
+                    name: "version",
+                    alias: "v",
+                    description: "Show package version",
+                    type: Boolean
+                }
+            ]
+        }
+    ]);
+}
+
+export function parseArgs(): Namespace {
+    const result = <Namespace>commandLineArgs([
+        { name: "version", alias: "v", type: Boolean },
+        { name: "list", alias: "l", type: Boolean },
+        { name: "diff", alias: "d", type: Boolean },
