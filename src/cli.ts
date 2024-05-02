@@ -116,3 +116,18 @@ export function parseArgs(): Namespace {
         { name: "version", alias: "v", type: Boolean },
         { name: "list", alias: "l", type: Boolean },
         { name: "diff", alias: "d", type: Boolean },
+        { name: "clean", alias: "c", type: Boolean },
+        { name: "help", alias: "h", type: Boolean },
+        { name: "force", alias: "f", type: Boolean },
+        { name: "update", alias: "u", type: Boolean },
+        { name: "index", alias: "i", type: String },
+        { name: "path", alias: "p", type: String },
+        {
+            name: "names",
+            alias: "n",
+            type: String,
+            multiple: true,
+            defaultOption: true
+        },
+        {
+            name: "ref",
