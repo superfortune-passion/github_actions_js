@@ -131,3 +131,16 @@ export function parseArgs(): Namespace {
         },
         {
             name: "ref",
+            alias: "r",
+            type: String
+        }
+    ]);
+    result.names = result.names || [];
+    result.help = result.help || false;
+    result.force = result.force || false;
+    result.update = result.update || false;
+    result.ref = result.ref || "";
+    result.path = result.path || ".";
+    result.index = getIndexURL(result.index || "");
+    return result;
+}
