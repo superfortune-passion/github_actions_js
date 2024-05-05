@@ -15,3 +15,12 @@ export function logCheck(
     if (check.action === "equal") return;
     if (!forceUpdate && check.force) {
         return console.log(chalk.grey(`  ${check.noForceMessage}`));
+    }
+    console.log(check.color(`  ${check.checkMessage}`));
+    if (showDiff) logDiff(check.oldValue, check.newValue);
+}
+
+export function getCheckResult(
+    resource: WorkflowResource,
+    checks: Array<Check>,
+    forceUpdate: boolean
