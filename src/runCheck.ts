@@ -32,3 +32,11 @@ export function getCheckResult(
     if (!resource.existsLocally()) return new Check("workflow", "added");
     const applyChecks = checks.filter(check => check.isApplied(forceUpdate));
     if (applyChecks.length) return new Check("workflow", "updated");
+
+    return new Check("workflow", "up to date");
+}
+
+export async function runCheck(
+    workflowItem: WorkflowResource,
+    forceUpdate: boolean,
+    removeMarker: boolean
