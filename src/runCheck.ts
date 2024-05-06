@@ -24,3 +24,11 @@ export function getCheckResult(
     resource: WorkflowResource,
     checks: Array<Check>,
     forceUpdate: boolean
+): Check {
+    const errorChecks = checks.filter(check => check.isError());
+    if (errorChecks.length)
+        return new Check("error", "error", false, "has errors");
+
+    if (!resource.existsLocally()) return new Check("workflow", "added");
+    const applyChecks = checks.filter(check => check.isApplied(forceUpdate));
+    if (applyChecks.length) return new Check("workflow", "updated");
