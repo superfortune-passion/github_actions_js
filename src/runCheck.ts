@@ -40,3 +40,12 @@ export async function runCheck(
     workflowItem: WorkflowResource,
     forceUpdate: boolean,
     removeMarker: boolean
+): Promise<Array<Check>> {
+    if (!workflowItem.existsLocally()) {
+        return [];
+    }
+    const localWorkflow = await workflowItem.getLocal();
+    let remoteWorkflow: Workflow;
+    try {
+        remoteWorkflow = await workflowItem.getRemote();
+    } catch (e) {
