@@ -49,3 +49,11 @@ export async function runCheck(
     try {
         remoteWorkflow = await workflowItem.getRemote();
     } catch (e) {
+        return [new Check("error", "error", false, `${e}`)];
+    }
+    const checker = new Checker(forceUpdate, localWorkflow);
+
+    const newWorkflow = new Merger(true).merge(localWorkflow, remoteWorkflow);
+    if (removeMarker) {
+        newWorkflow.jobs.forEach(job =>
+            job.steps.forEach(step => step.makeNonManaged())
