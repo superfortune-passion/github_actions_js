@@ -57,3 +57,12 @@ export async function runCheck(
     if (removeMarker) {
         newWorkflow.jobs.forEach(job =>
             job.steps.forEach(step => step.makeNonManaged())
+        );
+    }
+    return checker.getChecks(newWorkflow);
+}
+
+export async function runCheckAll(
+    resources: Array<WorkflowResource>,
+    forceUpdate: boolean,
+    showDiff: boolean,
