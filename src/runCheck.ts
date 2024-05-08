@@ -66,3 +66,11 @@ export async function runCheckAll(
     resources: Array<WorkflowResource>,
     forceUpdate: boolean,
     showDiff: boolean,
+    removeMarker: boolean
+): Promise<boolean> {
+    const checkLists = await Promise.all(
+        resources.map(resource => runCheck(resource, forceUpdate, removeMarker))
+    );
+    const errorChecks: Array<Check> = [];
+    resources.forEach((resource, index) => {
+        console.log(resource.getTitle());
