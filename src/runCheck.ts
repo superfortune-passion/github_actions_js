@@ -74,3 +74,10 @@ export async function runCheckAll(
     const errorChecks: Array<Check> = [];
     resources.forEach((resource, index) => {
         console.log(resource.getTitle());
+        const checks = checkLists[index];
+        errorChecks.push(...checks.filter(check => check.isError()));
+        checks.forEach(check => logCheck(check, forceUpdate, showDiff));
+        logCheck(getCheckResult(resource, checks, forceUpdate), false, false);
+    });
+    return errorChecks.length === 0;
+}
