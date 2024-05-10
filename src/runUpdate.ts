@@ -7,3 +7,11 @@ import { Merger } from "./workflow/merger.js";
 import { WorkflowResource } from "./workflow/resource.js";
 
 export function logUpdate(
+    check: Check,
+    forceUpdate = false,
+    showDiff = false
+): void {
+    if (check.action === "equal") return;
+    if (!forceUpdate && check.force) {
+        return console.log(chalk.grey(`  ${check.noForceMessage}`));
+    }
