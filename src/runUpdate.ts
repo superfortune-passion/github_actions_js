@@ -15,3 +15,11 @@ export function logUpdate(
     if (!forceUpdate && check.force) {
         return console.log(chalk.grey(`  ${check.noForceMessage}`));
     }
+    console.log(check.color(`  ${check.updateMessage}`));
+    if (showDiff) logDiff(check.oldValue, check.newValue);
+}
+
+export async function runUpdate(
+    workflowItem: WorkflowResource,
+    forceUpdate: boolean,
+    removeMarker: boolean
