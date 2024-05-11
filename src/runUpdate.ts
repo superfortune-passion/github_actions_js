@@ -23,3 +23,11 @@ export async function runUpdate(
     workflowItem: WorkflowResource,
     forceUpdate: boolean,
     removeMarker: boolean
+): Promise<void> {
+    const remoteWorkflow = await workflowItem.getRemote();
+    if (!workflowItem.existsLocally()) {
+        remoteWorkflow.jobs.forEach(job =>
+            job.steps.forEach(step => step.makeManaged())
+        );
+        await workflowItem.setLocal(remoteWorkflow.render());
+        return;
