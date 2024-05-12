@@ -31,3 +31,11 @@ export async function runUpdate(
         );
         await workflowItem.setLocal(remoteWorkflow.render());
         return;
+    }
+
+    const localWorkflow = await workflowItem.getLocal();
+    const newWorkflow = new Merger(forceUpdate).merge(
+        localWorkflow,
+        remoteWorkflow
+    );
+    if (removeMarker) {
