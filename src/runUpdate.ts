@@ -39,3 +39,11 @@ export async function runUpdate(
         remoteWorkflow
     );
     if (removeMarker) {
+        newWorkflow.jobs.forEach(job =>
+            job.steps.forEach(step => step.makeNonManaged())
+        );
+    }
+    await workflowItem.setLocal(newWorkflow.render());
+}
+
+export async function runUpdateAll(
