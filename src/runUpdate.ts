@@ -47,3 +47,11 @@ export async function runUpdate(
 }
 
 export async function runUpdateAll(
+    resources: Array<WorkflowResource>,
+    forceUpdate: boolean,
+    showDiff: boolean,
+    removeMarker: boolean
+): Promise<void> {
+    const checkLists = await Promise.all(
+        resources.map(resource => runCheck(resource, forceUpdate, removeMarker))
+    );
