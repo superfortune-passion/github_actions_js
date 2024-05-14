@@ -55,3 +55,10 @@ export async function runUpdateAll(
     const checkLists = await Promise.all(
         resources.map(resource => runCheck(resource, forceUpdate, removeMarker))
     );
+
+    resources.forEach((resource, index) => {
+        console.log(resource.getTitle());
+        const checks = checkLists[index];
+        checks.forEach(check => logUpdate(check, forceUpdate, showDiff));
+        logUpdate(getCheckResult(resource, checks, forceUpdate), false, false);
+    });
