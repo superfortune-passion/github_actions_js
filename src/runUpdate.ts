@@ -62,3 +62,12 @@ export async function runUpdateAll(
         checks.forEach(check => logUpdate(check, forceUpdate, showDiff));
         logUpdate(getCheckResult(resource, checks, forceUpdate), false, false);
     });
+
+    const updatedItems = resources.filter((resource, index) => {
+        if (!resource.existsLocally()) return true;
+        const checks = checkLists[index];
+        const applyChecks = checks.filter(check =>
+            check.isApplied(forceUpdate)
+        );
+        return applyChecks.length > 0;
+    });
