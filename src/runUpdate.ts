@@ -71,3 +71,10 @@ export async function runUpdateAll(
         );
         return applyChecks.length > 0;
     });
+    if (updatedItems.length)
+        await Promise.all(
+            updatedItems.map(resource =>
+                runUpdate(resource, forceUpdate, removeMarker)
+            )
+        );
+}
