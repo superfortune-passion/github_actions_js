@@ -8,3 +8,7 @@ export function runList(resource: WorkflowResource, workflow: Workflow): void {
         ? "is installed to"
         : "can be installed to";
     console.log(
+        `${chalk.blue(workflow.name)} ${chalk.grey(state)} ${chalk.bold(
+            resource.path
+        )}`
+    );
