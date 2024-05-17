@@ -12,3 +12,8 @@ export function runList(resource: WorkflowResource, workflow: Workflow): void {
             resource.path
         )}`
     );
+    if (workflow.commentLines.length) {
+        workflow.commentLines.forEach(line => console.log(`  ${line}`));
+        console.log("");
+    }
+}
