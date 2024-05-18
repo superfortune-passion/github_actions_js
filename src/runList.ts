@@ -17,3 +17,7 @@ export function runList(resource: WorkflowResource, workflow: Workflow): void {
         console.log("");
     }
 }
+
+export async function runListAll(
+    resources: Array<WorkflowResource>
+): Promise<void> {
