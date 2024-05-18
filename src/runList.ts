@@ -21,3 +21,8 @@ export function runList(resource: WorkflowResource, workflow: Workflow): void {
 export async function runListAll(
     resources: Array<WorkflowResource>
 ): Promise<void> {
+    const workflows = await Promise.all(
+        resources.map(resource => resource.getRemote())
+    );
+    resources.forEach((resource, index) => {
+        const workflow = workflows[index];
