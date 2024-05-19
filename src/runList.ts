@@ -26,3 +26,6 @@ export async function runListAll(
     );
     resources.forEach((resource, index) => {
         const workflow = workflows[index];
+        runList(resource, workflow);
+    });
+}
