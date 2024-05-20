@@ -29,3 +29,34 @@ export async function chooseIndex(
             {
                 name: "url",
                 type: "list",
+                message:
+                    "Select project type or choose any repository with workflows",
+                pageSize: 30,
+                choices: [
+                    ...indexes.map(url => {
+                        const index = getIndexResource(url);
+                        const title = index
+                            ? `${index.title.padEnd(titlePad)} ${highlightURL(
+                                replaceRef(url, ref)
+                            )}`
+                            : `${"Recently used".padEnd(
+                                titlePad
+                            )} ${highlightURL(replaceRef(url, ref))}`;
+                        return {
+                            name: title,
+                            value: url
+                        };
+                    }),
+                    {
+                        name: `${"From GitHub URL".padEnd(
+                            titlePad
+                        )} ${chalk.grey(
+                            "https://github.com/<owner>/<repo>/tree/main/.github/workflows"
+                        )}`,
+                        value: "github"
+                    },
+                    {
+                        name: `${"From directory".padEnd(
+                            titlePad
+                        )} ${chalk.grey("other/project/.github/workflows")}`,
+                        value: "path"
