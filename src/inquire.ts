@@ -91,3 +91,33 @@ export async function chooseIndex(
                     }
                     break;
                 }
+            }
+            const result = await WorkflowIndex.fromURL(
+                replaceRef(url, ref),
+                workflowsPath
+            );
+            console.log(
+                `\nNext time you can run me with ${chalk.blue(
+                    `-i ${getShortcut(url) || replaceRef(url, ref)}`
+                )}\n`
+            );
+            const newIndexes = [
+                url,
+                ...indexes.filter(index => index !== url)
+            ] as Array<string>;
+            config.set("indexes", newIndexes.slice(0, 30));
+            return result;
+        });
+}
+
+async function inputGitHubURL(ref: string): Promise<string> {
+    return inquirer
+        .prompt([
+            {
+                name: "input",
+                type: "input",
+                message: `Paste URL to ${chalk.bold(
+                    "<github_repo>/.github/workflows"
+                )} ${chalk.grey(
+                    "e.g. https://github.com/psf/black/tree/master/.github/workflows"
+                )}\n : `,
