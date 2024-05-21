@@ -60,3 +60,34 @@ export async function chooseIndex(
                             titlePad
                         )} ${chalk.grey("other/project/.github/workflows")}`,
                         value: "path"
+                    }
+                ]
+            }
+        ])
+        .then(async ({ url }) => {
+            if (url === "github") {
+                url = await inputGitHubURL(ref);
+            }
+            if (url === "path") {
+                let currentPath = ".";
+                while (true) {
+                    currentPath = await inputLocalPath(currentPath);
+                    url = pathToFileURL(currentPath).href;
+                    const index = await WorkflowIndex.fromFileURL(
+                        url,
+                        workflowsPath
+                    );
+                    if (!index.names.length) {
+                        console.log(
+                            chalk.red(
+                                `✗  Path ${chalk.bold(
+                                    currentPath
+                                )} does not have workflows, choose ${chalk.bold(
+                                    ".github/workflows"
+                                )} directory`
+                            )
+                        );
+                        continue;
+                    }
+                    break;
+                }
