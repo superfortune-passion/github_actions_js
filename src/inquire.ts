@@ -121,3 +121,34 @@ async function inputGitHubURL(ref: string): Promise<string> {
                 )} ${chalk.grey(
                     "e.g. https://github.com/psf/black/tree/master/.github/workflows"
                 )}\n : `,
+                validate: async value => {
+                    const index = await WorkflowIndex.fromURL(
+                        replaceRef(value, ref),
+                        ""
+                    );
+                    if (index.names.length) return true;
+                    return `Path ${value} does not have workflows`;
+                }
+            }
+        ])
+        .then(({ input }) => input);
+}
+
+async function inputLocalPath(basePath: string): Promise<string> {
+    inquirer.registerPrompt("directory", inquirerSelectDirectory);
+    return inquirer
+        .prompt([
+            {
+                name: "input",
+                type: "directory",
+                basePath: basePath,
+                message: `Select path to ${chalk.bold(".github/workflows")}`,
+                options: {
+                    displayHidden: true
+                }
+            }
+        ])
+        .then(({ input }) => input);
+}
+
+export async function createWorkflowsDir(path: string): Promise<boolean> {
