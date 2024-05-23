@@ -183,3 +183,33 @@ export async function selectWorkflows(
             ? [
                 ` Installed workflows ${chalk.green(
                     "(green ones)"
+                )} ${chalk.grey("installed")}`
+            ]
+            : []),
+        ` All workflows below ${chalk.grey("all")}`,
+        ...workflows.map(w => {
+            const title = w.getTitle(
+                w.existsLocally() ? "is installed to" : "can be installed to",
+                w.existsLocally() ? chalk.green : chalk.white
+            );
+            return ` ${title}`;
+        })
+    ];
+    const message = hasInstalled
+        ? "Select workflows to install or update"
+        : "Select workflows to install";
+    return inquirer
+        .prompt([
+            {
+                name: "names",
+                type: "checkbox",
+                default: hasInstalled ? ["installed"] : [],
+                message: message,
+                validate: result => {
+                    if (result.length) return true;
+                    return "Select at least one workflow";
+                },
+                pageSize: 30,
+                choices: choices.map(choice => ({
+                    name: choice,
+                    value: names[choices.indexOf(choice)]
