@@ -152,3 +152,34 @@ async function inputLocalPath(basePath: string): Promise<string> {
 }
 
 export async function createWorkflowsDir(path: string): Promise<boolean> {
+    return inquirer
+        .prompt([
+            {
+                name: "answer",
+                type: "confirm",
+                message: `It looks like we do not have ${chalk.blue(
+                    path
+                )} directory to store workflows. Create it?`
+            }
+        ])
+        .then(({ answer }) => answer);
+}
+
+export async function selectWorkflows(
+    workflowIndex: WorkflowIndex
+): Promise<Array<WorkflowResource>> {
+    const hasInstalled = workflowIndex.getInstalledWorkflows().length > 0;
+    const names = [
+        ...(hasInstalled ? ["installed"] : []),
+        "all",
+        ...workflowIndex.names
+    ];
+    const workflows = workflowIndex.getAllWorkflows();
+    await Promise.all(
+        workflows.filter(w => w.existsLocally()).map(w => w.getLocal())
+    );
+    const choices = [
+        ...(hasInstalled
+            ? [
+                ` Installed workflows ${chalk.green(
+                    "(green ones)"
