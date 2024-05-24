@@ -213,3 +213,34 @@ export async function selectWorkflows(
                 choices: choices.map(choice => ({
                     name: choice,
                     value: names[choices.indexOf(choice)]
+                }))
+            }
+        ])
+        .then(({ names }) => {
+            return workflowIndex.getWorkflows(names);
+        });
+}
+
+export async function confirmApply(): Promise<boolean> {
+    return inquirer
+        .prompt([
+            {
+                name: "confirm",
+                type: "confirm",
+                message: `Apply updates?`
+            }
+        ])
+        .then(({ confirm }) => confirm);
+}
+
+type TConfirmResult =
+    | "apply"
+    | "rerun_noforce"
+    | "rerun_force"
+    | "rerun_nodiff"
+    | "rerun_diff"
+    | "discard";
+interface IConfirmChoice {
+    name: string;
+    value: TConfirmResult;
+}
