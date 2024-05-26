@@ -244,3 +244,34 @@ interface IConfirmChoice {
     name: string;
     value: TConfirmResult;
 }
+
+export async function confirmRerunApply(
+    forceUpdate: boolean,
+    showDiff: boolean,
+    hasChanges: boolean,
+    hasForceChanges: boolean
+): Promise<TConfirmResult> {
+    if (!hasForceChanges) return "apply";
+    const choices: Array<IConfirmChoice> = [];
+    if (hasChanges) {
+        choices.push({
+            name: `${chalk.green("Apply")} listed changes and exit`,
+            value: "apply"
+        });
+    } else {
+        choices.push({
+            name: `Exit, as everything is ${chalk.green("up to date")}`,
+            value: "apply"
+        });
+    }
+    if (forceUpdate) {
+        choices.push({
+            name: `Remove ${chalk.blue(
+                "--force"
+            )} flag to keep user-edited parts untouched`,
+            value: "rerun_noforce"
+        });
+    } else {
+        choices.push({
+            name: `Add ${chalk.blue(
+                "--force"
