@@ -275,3 +275,32 @@ export async function confirmRerunApply(
         choices.push({
             name: `Add ${chalk.blue(
                 "--force"
+            )} flag to update user-edited parts`,
+            value: "rerun_force"
+        });
+    }
+    if (showDiff) {
+        choices.push({
+            name: `Hide changed lines, disable ${chalk.blue("--diff")} flag`,
+            value: "rerun_nodiff"
+        });
+    } else {
+        choices.push({
+            name: `Show changed lines with ${chalk.blue("--diff")} flag`,
+            value: "rerun_diff"
+        });
+    }
+    if (hasChanges) {
+        choices.push({ name: "Discard changes and exit", value: "discard" });
+    }
+    return inquirer
+        .prompt([
+            {
+                name: "result",
+                type: "list",
+                message: "What do we do next?",
+                choices: choices
+            }
+        ])
+        .then(({ result }) => result);
+}
