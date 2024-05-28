@@ -28,3 +28,18 @@ async function logWorkflowChecks(
     const result: Array<[WorkflowResource, Array<Check>]> = [];
     resources.forEach((resource, index) => {
         const checks = checkLists[index];
+        result.push([resource, checks]);
+        if (resource.existsLocally()) {
+            console.log(resource.getTitle());
+            checks.forEach(check => logCheck(check, args.force, args.diff));
+            logCheck(getCheckResult(resource, checks, args.force));
+        } else {
+            runList(resource, resource.getRemoteCached());
+        }
+    });
+    return result;
+}
+
+function logWorkflowUpdates(
+    resource: WorkflowResource,
+    checks: Array<Check>,
