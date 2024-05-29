@@ -57,3 +57,18 @@ async function checkLocalPath(localPath: string): Promise<boolean> {
     if (!(await createWorkflowsDir(localPath))) {
         console.log("Okay, looks like that was a wrong directory.");
         console.log(
+            `Restart me where I should be, or just use ${chalk.blue(
+                "--path <github repo path>"
+            )}`
+        );
+        console.log("Bye for now!");
+        return false;
+    }
+    fs.mkdirSync(localPath, { recursive: true });
+    console.log(
+        `Awesome, we have just created ${chalk.bold(localPath)} directory!\n`
+    );
+    return true;
+}
+
+export async function runInteractive(args: Namespace): Promise<void> {
