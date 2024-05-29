@@ -43,3 +43,17 @@ async function logWorkflowChecks(
 function logWorkflowUpdates(
     resource: WorkflowResource,
     checks: Array<Check>,
+    forceUpdate: boolean
+) {
+    console.log(resource.getTitle());
+    logUpdate(getCheckResult(resource, checks, forceUpdate));
+}
+
+async function checkLocalPath(localPath: string): Promise<boolean> {
+    if (fs.existsSync(localPath)) return true;
+    console.log(
+        `Let's set up some ${chalk.bold("GitHub Actions")} for this project!\n`
+    );
+    if (!(await createWorkflowsDir(localPath))) {
+        console.log("Okay, looks like that was a wrong directory.");
+        console.log(
