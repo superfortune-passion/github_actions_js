@@ -72,3 +72,18 @@ async function checkLocalPath(localPath: string): Promise<boolean> {
 }
 
 export async function runInteractive(args: Namespace): Promise<void> {
+    console.clear();
+    console.log("Hi there!\n");
+    console.log(
+        `I am ${chalk.bold(
+            chalk.blue("GitHub Actions Manager")
+        )}, as you probably know already.\n`
+    );
+    const localPath = path.join(args.path, LOCAL_WORKFLOWS_PATH);
+    if (!(await checkLocalPath(localPath))) {
+        return;
+    }
+    const workflowIndex = await chooseIndex(args.index, args.ref, localPath);
+    if (!workflowIndex.names.length) {
+        console.log(`No workflows found in ${workflowIndex.url}`);
+        return;
