@@ -101,3 +101,18 @@ export async function runInteractive(args: Namespace): Promise<void> {
         const changedResourceChecks = resourceCheckLists.filter(
             ([resource, checks]) =>
                 !resource.existsLocally() ||
+                checks.filter(check => check.isApplied(args.force)).length
+        );
+        const forceChangedResourceChecks = resourceCheckLists.filter(
+            ([resource, checks]) =>
+                !resource.existsLocally() ||
+                checks.filter(check => check.isApplied(true)).length
+        );
+        const changedResources = changedResourceChecks.map(
+            ([resource]) => resource
+        );
+        const confirmResult = await confirmRerunApply(
+            args.force,
+            args.diff,
+            changedResourceChecks.length > 0,
+            forceChangedResourceChecks.length > 0
