@@ -87,3 +87,17 @@ export async function runInteractive(args: Namespace): Promise<void> {
     if (!workflowIndex.names.length) {
         console.log(`No workflows found in ${workflowIndex.url}`);
         return;
+    }
+
+    console.log(`Using index ${highlightURL(workflowIndex.url)}`);
+
+    const resources = await selectWorkflows(workflowIndex);
+    if (args.list) {
+        await runListAll(resources);
+        return;
+    }
+    while (true) {
+        const resourceCheckLists = await logWorkflowChecks(resources, args);
+        const changedResourceChecks = resourceCheckLists.filter(
+            ([resource, checks]) =>
+                !resource.existsLocally() ||
