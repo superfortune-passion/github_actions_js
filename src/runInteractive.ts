@@ -131,3 +131,16 @@ export async function runInteractive(args: Namespace): Promise<void> {
                     runUpdate(resource, args.force, args.clean)
                 )
             );
+            break;
+        }
+        if (confirmResult === "rerun_force") args.force = true;
+        if (confirmResult === "rerun_noforce") args.force = false;
+        if (confirmResult === "rerun_diff") args.diff = true;
+        if (confirmResult === "rerun_nodiff") args.diff = false;
+    }
+
+    console.log("");
+    console.log(
+        "My job here is done! Start me from time to time to sync up changes. Bye for now!"
+    );
+}
