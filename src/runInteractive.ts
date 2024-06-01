@@ -116,3 +116,18 @@ export async function runInteractive(args: Namespace): Promise<void> {
             args.diff,
             changedResourceChecks.length > 0,
             forceChangedResourceChecks.length > 0
+        );
+        if (confirmResult === "discard") {
+            console.log("");
+            console.log("Okay, let's keep things as they are...");
+            break;
+        }
+        if (confirmResult === "apply") {
+            changedResourceChecks.map(([resource, checks]) =>
+                logWorkflowUpdates(resource, checks, args.force)
+            );
+            await Promise.all(
+                changedResources.map(resource =>
+                    runUpdate(resource, args.force, args.clean)
+                )
+            );
