@@ -13,3 +13,18 @@ import { highlightURL, replaceRef } from "./urlUtils.js";
 import {
     decapitalize,
     getCommandArgs,
+    getCommandName,
+    getVersionString
+} from "./utils.js";
+import { WorkflowResource } from "./workflow/resource.js";
+import { WorkflowIndex } from "./workflow/workflowIndex.js";
+
+async function main(): Promise<void> {
+    let args: Namespace;
+    const commandName = getCommandName();
+    try {
+        args = parseArgs();
+    } catch (e) {
+        console.log(e instanceof Error ? e.message : e);
+        console.log("Use `--help` to know more");
+        process.exit(1);
