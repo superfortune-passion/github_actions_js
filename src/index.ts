@@ -42,3 +42,18 @@ async function main(): Promise<void> {
         try {
             await runInteractive(args);
         } catch (e) {
+            console.warn(chalk.red(`✗  ${e}`));
+            process.exit(1);
+        }
+        process.exit(0);
+    }
+
+    if (!fs.existsSync(args.path)) {
+        console.warn(
+            chalk.red(`✗  ${chalk.bold(args.path)} directory does not exist`)
+        );
+        console.warn(
+            chalk.yellow("✎  Probably this is not a GitHub repository root")
+        );
+        console.warn(
+            chalk.yellow(
