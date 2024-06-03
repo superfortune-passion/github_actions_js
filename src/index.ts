@@ -28,3 +28,17 @@ async function main(): Promise<void> {
         console.log(e instanceof Error ? e.message : e);
         console.log("Use `--help` to know more");
         process.exit(1);
+    }
+    if (args.help) {
+        console.log(getHelp());
+        process.exit(0);
+    }
+    if (args.version) {
+        console.log(getVersionString());
+        process.exit(0);
+    }
+
+    if (args.names.length === 0) {
+        try {
+            await runInteractive(args);
+        } catch (e) {
