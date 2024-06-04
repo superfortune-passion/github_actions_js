@@ -57,3 +57,17 @@ async function main(): Promise<void> {
         );
         console.warn(
             chalk.yellow(
+                `✎  If it is, create this directory with: ${chalk.bold(
+                    `mkdir -p ${args.path}`
+                )}`
+            )
+        );
+        process.exit(1);
+    }
+
+    let workflowIndex: WorkflowIndex;
+    let workflows: Array<WorkflowResource>;
+    try {
+        workflowIndex = await WorkflowIndex.fromURL(
+            replaceRef(args.index || JS_INDEX_URL, args.ref),
+            path.join(args.path, LOCAL_WORKFLOWS_PATH)
