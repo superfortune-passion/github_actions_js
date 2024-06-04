@@ -71,3 +71,18 @@ async function main(): Promise<void> {
         workflowIndex = await WorkflowIndex.fromURL(
             replaceRef(args.index || JS_INDEX_URL, args.ref),
             path.join(args.path, LOCAL_WORKFLOWS_PATH)
+        );
+        console.log(`Using index ${highlightURL(workflowIndex.url)}`);
+        workflows = workflowIndex.getWorkflows(args.names);
+    } catch (e) {
+        console.log(chalk.red(`✗  ${e instanceof Error ? e.message : e}`));
+        process.exit(1);
+    }
+    if (workflows.length === 0) {
+        const commandList = `${getCommandName()} --list`;
+        console.log(
+            `✎  No workflows found, install them first, or check ${chalk.bold(
+                commandList
+            )}`
+        );
+        const command = `${getCommandName()} -u all`;
