@@ -86,3 +86,18 @@ async function main(): Promise<void> {
             )}`
         );
         const command = `${getCommandName()} -u all`;
+        console.log(
+            `${chalk.bold(chalk.blue(command))} ${chalk.grey(
+                "// install all workflows below"
+            )}`
+        );
+        workflowIndex.getAllWorkflows().map(workflow => {
+            const command = `${getCommandName()} -u ${workflow.name}`;
+            const description = workflow.title
+                ? `// install to ${decapitalize(workflow.title)}`
+                : "";
+            console.log(
+                `${chalk.bold(chalk.blue(command))} ${chalk.grey(description)}`
+            );
+        });
+        process.exit(0);
