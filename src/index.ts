@@ -101,3 +101,17 @@ async function main(): Promise<void> {
             );
         });
         process.exit(0);
+    }
+    if (args.list) {
+        runListAll(workflows);
+        process.exit(0);
+    }
+    if (!args.update) {
+        const result = await runCheckAll(
+            workflows,
+            args.force,
+            args.diff,
+            args.clean
+        );
+        if (result) {
+            console.log(
