@@ -130,3 +130,16 @@ async function main(): Promise<void> {
 
 function logUpdateError(): void {
     console.log(chalk.red("✗  Found errors that prevent update"));
+    console.log(
+        chalk.grey(
+            "✎  Delete invalid workflows, update all, and merge your changes"
+        )
+    );
+    console.log(chalk.grey(`✎  Check for updates: ${DOCS_URL}`));
+}
+
+if (typeof require !== "undefined" && require.main === module) {
+    main();
+}
+
+export default main;
