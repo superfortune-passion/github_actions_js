@@ -115,3 +115,18 @@ async function main(): Promise<void> {
         );
         if (result) {
             console.log(
+                chalk.green(
+                    `✓  Run ${chalk.bold(
+                        `${commandName} ${getCommandArgs()} --update`
+                    )} any time you want!`
+                )
+            );
+        } else logUpdateError();
+        process.exit(result ? 0 : 1);
+    }
+
+    await runUpdateAll(workflows, args.force, args.diff, args.clean);
+}
+
+function logUpdateError(): void {
+    console.log(chalk.red("✗  Found errors that prevent update"));
