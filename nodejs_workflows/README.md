@@ -33,3 +33,20 @@ Index: [index.yml](./index.yml)
 - Deleted steps are restored on update, so make them empty instead of removing
 
 ## Zen
+- Enforce best practices for versioning and changelog in a passive-aggressive way
+- Write Release and Pull Request notes in [Keep a Changelog](https://keepachangelog.com/en/1.0.0/) format
+- Follow [SemVer](https://semver.org/) versioning schema
+- Noone likes to write and assemble Release notes, so leave it to automation
+- Always leave a final decision to a human in case automation goes crazy
+- All actions use only Node.js 12 for speed and stability
+- Every action should have an additional manual trigger in case of trouble
+- Full compatibility with [nektos/act](https://github.com/nektos/act) for local execution
+- Do not try to build one-fits-all soultion, provide customization instead
+
+## Secrets
+- `CODECOV_TOKEN` - Token for https://codecov.io/ coverage report
+- `GPG_PRIVATE_KEY` - Key to sign commits https://docs.github.com/en/github/authenticating-to-github/generating-a-new-gpg-key
+- `GPG_PRIVATE_KEY_PASSPHRASE` - Passphrase for GPG private key
+- `NPM_TOKEN` - Token for npm publishing https://docs.npmjs.com/creating-and-viewing-access-tokens
+
+## Available workflows
