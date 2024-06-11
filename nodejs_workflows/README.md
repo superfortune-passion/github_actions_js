@@ -16,3 +16,20 @@
 ## Installation
 
 ```bash
+# install globally or locally
+npm i -g github-actions
+# npm i --save-dev github-actions
+
+# run interactive manager
+# in a GitHub repository root
+ghactions -i node
+```
+
+Index: [index.yml](./index.yml)
+
+## How to use
+- Set 'github-actions-managed' to false on manual edit to prevent step overwrite on update
+- User-added steps survive update as well
+- Deleted steps are restored on update, so make them empty instead of removing
+
+## Zen
