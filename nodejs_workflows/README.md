@@ -50,3 +50,19 @@ Index: [index.yml](./index.yml)
 - `NPM_TOKEN` - Token for npm publishing https://docs.npmjs.com/creating-and-viewing-access-tokens
 
 ## Available workflows
+### Run style checks and unit tests
+Workflow: [on_push_check.yml](./on_push_check.yml)
+
+```bash
+# install this action to .github/workflows
+ghactions -i node -u on_push_check
+```
+
+- Starts on push to any branch
+- Uses `npm` cache to improve performance
+- Runs linting if `lint` script is available in `npm run`
+- Runs unit tests if `test` script is available in `npm run`
+- Runs `test-cov` script if it is available in `npm run`
+- Sends test coverage report to https://codecov.io/ if `CODECOV_TOKEN` secret is set
+
+**Environment**
