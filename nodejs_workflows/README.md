@@ -66,3 +66,20 @@ ghactions -i node -u on_push_check
 - Sends test coverage report to https://codecov.io/ if `CODECOV_TOKEN` secret is set
 
 **Environment**
+
+- `LINT_SCRIPT` - npm run script to run for code style check if available (default: `lint`)
+- `TEST_SCRIPT` - npm run script to run for testing if available (default: `test`)
+- `TEST_COVERAGE_SCRIPT` - npm run script to run for test coverage if available (default: `test-cov`)
+
+**Secrets**
+
+- `CODECOV_TOKEN` - Token for https://codecov.io/ coverage report
+
+
+### Update Pull Request labels
+Workflow: [on_pull_opened_or_edited.yml](./on_pull_opened_or_edited.yml)
+
+```bash
+# install this action to .github/workflows
+ghactions -i node -u on_pull_opened_or_edited
+```
