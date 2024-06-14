@@ -83,3 +83,21 @@ Workflow: [on_pull_opened_or_edited.yml](./on_pull_opened_or_edited.yml)
 # install this action to .github/workflows
 ghactions -i node -u on_pull_opened_or_edited
 ```
+
+- Starts on Pull Request opened or edited event
+- Pull Request notes must be in [Keep a Changelog](https://keepachangelog.com/en/1.0.0/) format
+- If Pull Request branch name is `release/*`, adds `release` label
+- If Pull Request notes has `Removed` section, adds `major` label
+- If Pull Request notes has `Added`, `Changed` or `Deprecated` sections, adds `minor` label
+- Otherwise adds `patch` label
+
+
+### Update Release from Pull Request
+Workflow: [on_pull_merged.yml](./on_pull_merged.yml)
+
+```bash
+# install this action to .github/workflows
+ghactions -i node -u on_pull_merged
+```
+
+- Starts on Pull Request merge for non-`release/*` branch
