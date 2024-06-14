@@ -101,3 +101,20 @@ ghactions -i node -u on_pull_merged
 ```
 
 - Starts on Pull Request merge for non-`release/*` branch
+- Creates or updates a Release draft for Pull Request base branch
+- Release draft notes are merged from existing notes and Pull Request notes
+- Each entry added from Pull Request notes contains a link to the Pull Request
+- Release draft suggested version is based on Release notes
+- Project-agnostic, can be used on any kind of project, change `path: ./package.json` to path to your version file
+
+**Environment**
+
+- `RELEASE_TYPE` - Release suggested version: stable, rc, alpha, beta (default: `rc`)
+
+
+### Create Release Pull Request
+Workflow: [on_release_published.yml](./on_release_published.yml)
+
+```bash
+# install this action to .github/workflows
+ghactions -i node -u on_release_published
