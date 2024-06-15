@@ -135,3 +135,20 @@ ghactions -i node -u on_release_published
 
 
 ### Publish to NPM
+Workflow: [on_release_pull_merged.yml](./on_release_pull_merged.yml)
+
+```bash
+# install this action to .github/workflows
+ghactions -i node -u on_release_pull_merged
+```
+
+- Runs only if `NPM_TOKEN` secret is set
+- Starts on Pull Request merge for `release/*` branch
+- Uses Pull Request branch for deployment, so released version contains only changes
+  from base branch when Release had been published
+- Builds package if `build` script is available in `package.json`
+- Publishes new version to [npm](https://www.npmjs.com/)
+
+**Secrets**
+
+- `NPM_TOKEN` - Token for npm publishing https://docs.npmjs.com/creating-and-viewing-access-tokens
