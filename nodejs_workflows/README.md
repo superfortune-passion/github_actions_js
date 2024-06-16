@@ -152,3 +152,19 @@ ghactions -i node -u on_release_pull_merged
 **Secrets**
 
 - `NPM_TOKEN` - Token for npm publishing https://docs.npmjs.com/creating-and-viewing-access-tokens
+
+
+### Create Release draft
+Workflow: [on_demand_create_release_draft.yml](./on_demand_create_release_draft.yml)
+
+```bash
+# install this action to .github/workflows
+ghactions -i node -u on_demand_create_release_draft
+```
+
+- Starts only manually
+- Can be used if you do not enforce Pull Request-based updates and commit directly to `target` branch
+- Creates or updates a release draft for `target` branch
+- Release notes are populated from `Unreleased` section of `CHANGELOG.md`
+- Sets suggested version as `name` and `tag` of the Release
+- Project-agnostic, can be used on any kind of project, change `path: ./package.json` to path to your version file
