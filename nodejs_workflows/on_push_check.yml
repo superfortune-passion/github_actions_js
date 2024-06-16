@@ -1,0 +1,10 @@
+# This workflow provided by GitHub Actions Manager
+# Documentation: https://github.com/vemel/github_actions_js/blob/main/nodejs_workflows/README.md
+#
+# - Starts on push to any branch
+# - Uses `npm` cache to improve performance
+# - Runs linting if `lint` script is available in `npm run`
+# - Runs unit tests if `test` script is available in `npm run`
+# - Runs `test-cov` script if it is available in `npm run`
+# - Sends test coverage report to https://codecov.io/ if `CODECOV_TOKEN` secret is set
+#
