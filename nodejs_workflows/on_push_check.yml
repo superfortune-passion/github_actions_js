@@ -27,3 +27,12 @@ jobs:
         node-version:
           - 14
     steps:
+      - name: Checkout current branch
+        id: checkout
+        uses: actions/checkout@v3
+      - name: Get available scripts
+        id: scripts
+        uses: actions/github-script@v6
+        with:
+          script: |
+            const output = (await exec.getExecOutput('npm run')).stdout;
