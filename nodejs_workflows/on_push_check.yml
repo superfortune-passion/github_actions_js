@@ -65,3 +65,12 @@ jobs:
         id: install
         if: steps.scripts.outputs.result
         run: |
+          npm install -g npm
+          npm ci
+      - name: Run linting
+        id: lint
+        if: steps.scripts.outputs.lint
+        run: |
+          echo "Running: npm run ${{ steps.scripts.outputs.lint }}"
+          npm run ${{ steps.scripts.outputs.lint }}
+      - name: Run tests
