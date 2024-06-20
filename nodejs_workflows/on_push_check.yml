@@ -55,3 +55,13 @@ jobs:
             }
             return result;
       - name: Set up Node
+        id: setup-node
+        uses: actions/setup-node@v3
+        with:
+          node-version: ${{ matrix.node-version }}
+          registry-url: https://registry.npmjs.org/
+          cache: npm
+      - name: Install package
+        id: install
+        if: steps.scripts.outputs.result
+        run: |
