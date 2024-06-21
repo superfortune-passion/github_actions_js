@@ -74,3 +74,13 @@ jobs:
           echo "Running: npm run ${{ steps.scripts.outputs.lint }}"
           npm run ${{ steps.scripts.outputs.lint }}
       - name: Run tests
+        id: test
+        if: steps.scripts.outputs.test
+        run: |
+          echo "Running: npm run ${{ steps.scripts.outputs.test }}"
+          npm run ${{ steps.scripts.outputs.test }}
+      - name: Send test coverage report
+        id: test-coverage
+        if: steps.scripts.outputs.test
+        env:
+          RUN_SCRIPT: ${{ steps.scripts.outputs.test-cov }}
