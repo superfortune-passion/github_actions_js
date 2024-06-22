@@ -7,3 +7,13 @@
 # - If Pull Request notes has `Removed` section, adds `major` label
 # - If Pull Request notes has `Added`, `Changed` or `Deprecated` sections, adds `minor` label
 # - Otherwise adds `patch` label
+
+name: Update Pull Request labels
+"on":
+  pull_request:
+    types:
+      - opened
+      - edited
+      - reopened
+  workflow_dispatch:
+    inputs:
