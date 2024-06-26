@@ -62,3 +62,12 @@ jobs:
         uses: vemel/nextchange@latest
         with:
           set: ${{ steps.pull-request.outputs.body }}
+      - name: Update Pull Request labels
+        id: update-labels
+        uses: actions/github-script@v6
+        with:
+          script: |
+            // get suggested patch, minor or major label from pull request notes
+            const number = ${{ steps.pull-request.outputs.number }};
+            const branch = ${{ toJSON(steps.pull-request.outputs.branch) }};
+            const label = ${{ toJSON(steps.notes.outputs.label) }};
