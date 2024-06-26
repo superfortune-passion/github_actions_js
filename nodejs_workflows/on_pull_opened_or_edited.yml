@@ -52,3 +52,13 @@ jobs:
             if (!pullRequest) {
               throw new Error(`Cannot find Pull Request`);
             }
+
+            core.setOutput('branch', pullRequest.head.ref);
+            core.setOutput('number', pullRequest.number);
+            core.setOutput('body', pullRequest.body);
+            core.setOutput('labels', pullRequest.labels.map(data => data.name));
+      - name: Analyze PR notes
+        id: notes
+        uses: vemel/nextchange@latest
+        with:
+          set: ${{ steps.pull-request.outputs.body }}
