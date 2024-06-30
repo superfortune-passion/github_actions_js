@@ -58,3 +58,23 @@ jobs:
             }
 
             // Stop if Pull request is not merged
+            if (!pullRequest.merged) {
+              core.info(`Pull Request ${pullRequest.number} is not merged, skipping Release draft update`);
+              return;
+            }
+
+            // Stop if Pull Request branch name starts with `release`
+            const branch = pullRequest.head.ref;
+            if (branch.startsWith('release/')) {
+              core.info(`This is a release branch ${branch}, skipping Release draft update`);
+              return;
+            }
+
+            core.setOutput('branch', branch);
+            core.setOutput('base', pullRequest.base.ref);
+            core.setOutput('number', pullRequest.number);
+            core.setOutput('url', pullRequest.html_url);
+            core.setOutput('body', pullRequest.body);
+            core.setOutput('suffix', `[#${pullRequest.number}](${pullRequest.html_url})`);
+            return true;
+      - name: Checkout Pull Request base branch
