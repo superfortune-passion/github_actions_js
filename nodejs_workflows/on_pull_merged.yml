@@ -78,3 +78,22 @@ jobs:
             core.setOutput('suffix', `[#${pullRequest.number}](${pullRequest.html_url})`);
             return true;
       - name: Checkout Pull Request base branch
+        id: checkout
+        if: steps.pull-request.outputs.result
+        uses: actions/checkout@v3
+        with:
+          ref: ${{ steps.pull-request.outputs.base }}
+      - name: Get Unreleased notes
+        id: unreleased
+        if: steps.pull-request.outputs.result
+        uses: vemel/nextchange@latest
+        with:
+          get: Unreleased
+          sanitize: true
+      - name: Get or create Release draft
+        uses: actions/github-script@v6
+        id: release
+        if: steps.pull-request.outputs.result
+        with:
+          script: |
+            let release = null;
