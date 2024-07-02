@@ -157,3 +157,23 @@ jobs:
           script: |
             const releaseId = ${{ steps.release.outputs.id }};
             core.info(`Release ID: ${releaseId}`);
+
+            // set release draft tag and name to suggested version
+            const version = ${{ toJSON(steps.version.outputs.result) }};
+            core.info(`Release version: ${version}`);
+
+            // do not update release body if it already has link to this pull request
+            const suffix = ${{ toJSON(steps.pull-request.outputs.suffix) }};
+            const oldBody = ${{ toJSON(steps.release.outputs.body) }};
+            const newBody = ${{ toJSON(steps.notes.outputs.result) }};
+            const body = oldBody.includes(suffix) ? oldBody : newBody;
+            core.info(`Release body: ${body}`);
+
+            const response = await github.repos.updateRelease({
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              release_id: releaseId,
+              tag_name: version,
+              name: version,
+              draft: true,
+              body: body,
