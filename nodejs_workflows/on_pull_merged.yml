@@ -177,3 +177,21 @@ jobs:
               name: version,
               draft: true,
               body: body,
+              prerelease: ${{ steps.version.outputs.is-prerelease }},
+            });
+            core.info(`Release URL: ${response.data.html_url}`);
+      - name: Add comment to Pull Request
+        id: add-comment
+        uses: actions/github-script@v6
+        if: steps.pull-request.outputs.result
+        with:
+          script: |
+            const issueNumber = ${{ steps.pull-request.outputs.number }};
+            const version = ${{ toJSON(steps.version.outputs.result) }};
+            const response = await github.issues.createComment({
+                owner: context.repo.owner,
+                repo: context.repo.repo,
+                issue_number: issueNumber,
+                body: `Pull request notes were merged to release draft ${version}`,
+            });
+            core.info(`Comment URL: ${response.data.html_url}`);
