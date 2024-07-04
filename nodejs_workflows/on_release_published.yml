@@ -26,3 +26,17 @@ name: Create Release Pull Request
 jobs:
   release-new-version:
     runs-on: ubuntu-latest
+    env:
+      GPG_PRIVATE_KEY: ${{ secrets.GPG_PRIVATE_KEY }}
+      GPG_PRIVATE_KEY_PASSPHRASE: ${{ secrets.GPG_PRIVATE_KEY_PASSPHRASE }}
+    steps:
+      - name: Get Release
+        uses: actions/github-script@v6
+        id: release
+        with:
+          script: |
+            let release = null;
+            if (context.payload.inputs && context.payload.inputs.tag) {
+              const tagName = context.payload.inputs.tag;
+              // find Pull Request by number fom input
+              const releasesResponse = await github.repos.listReleases({
