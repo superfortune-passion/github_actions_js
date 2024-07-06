@@ -53,3 +53,17 @@ jobs:
             if (context.payload.release){
               // get Release from event payload
               release = context.payload.release;
+            }
+
+            if (!release) {
+              throw new Error(`Cannot find Release`);
+            }
+
+            core.setOutput('target', release.target_commitish);
+            core.setOutput('branch', `release/${release.tag_name}`);
+            core.setOutput('id', release.id);
+            core.setOutput("url", release.html_url);
+            core.setOutput('tag', release.tag_name);
+            core.setOutput('name', release.name);
+            core.setOutput('body', release.body);
+            return true;
