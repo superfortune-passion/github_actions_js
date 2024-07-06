@@ -67,3 +67,17 @@ jobs:
             core.setOutput('name', release.name);
             core.setOutput('body', release.body);
             return true;
+      - name: Checkout Release target branch
+        id: checkout
+        uses: actions/checkout@v3
+        with:
+          ref: ${{ steps.release.outputs.target }}
+      - name: Get new version
+        id: version
+        uses: vemel/nextversion@latest
+        with:
+          path: ./package.json
+          type: semver
+          result: ${{ steps.release.outputs.tag }}
+      - name: Set version
+        id: set-version
