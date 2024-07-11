@@ -24,3 +24,16 @@ name: Publish to NPM
 jobs:
   publish-to-npm:
     runs-on: ubuntu-latest
+    env:
+      BUILD_SCRIPT: build
+      NPM_TOKEN: ${{ secrets.NPM_TOKEN }}
+    steps:
+      - name: Get Pull Request
+        id: pull-request
+        if: env.NPM_TOKEN
+        uses: actions/github-script@v6
+        with:
+          script: |
+            let pullRequest = null;
+            if (context.payload.inputs && context.payload.inputs.number) {
+              // find Pull Request by number fom input
