@@ -37,3 +37,16 @@ jobs:
             let pullRequest = null;
             if (context.payload.inputs && context.payload.inputs.number) {
               // find Pull Request by number fom input
+              const number = context.payload.inputs.number;
+              try {
+                pullRequest = (await github.pulls.get({
+                  owner: context.repo.owner,
+                  repo: context.repo.repo,
+                  pull_number: number,
+                })).data;
+              } catch(e) {
+                core.error(`Cannot get Pull Request #${number}: ${e}`);
+                return;
+              }
+            } else {
+              // get Pull Request from event payload
