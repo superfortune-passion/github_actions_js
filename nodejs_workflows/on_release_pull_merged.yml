@@ -101,3 +101,16 @@ jobs:
             return true;
       - name: Set up Node.js
         uses: actions/setup-node@v3
+        id: setup-node
+        if: steps.pull-request.outputs.result
+        with:
+          registry-url: https://registry.npmjs.org/
+          node-version: 18
+      - name: Install package
+        id: install
+        if: steps.pull-request.outputs.result
+        run: |
+          npm install -g npm
+          npm ci
+      - name: Build package
+        id: build
