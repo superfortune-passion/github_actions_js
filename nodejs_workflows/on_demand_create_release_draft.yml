@@ -44,3 +44,14 @@ jobs:
               repo: context.repo.repo
             })
             for (let releaseItem of releasesResponse.data) {
+              if (!releaseItem.draft) continue;
+              if (releaseItem.target_commitish !== baseBranch) continue;
+              release = releaseItem;
+              core.info(`Found existing release draft ${release.name}`);
+              break;
+            }
+
+            // create a release draft if there is none
+            if (!release) {
+              const response = await github.repos.createRelease({
+                owner: context.repo.owner,
