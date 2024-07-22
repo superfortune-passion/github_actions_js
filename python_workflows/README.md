@@ -13,3 +13,18 @@
     - [Create Release Pull Request](#create-release-pull-request)
     - [Publish to PyPI](#publish-to-pypi)
     - [Create Release draft](#create-release-draft)
+
+## Installation
+
+```bash
+# install globally
+npm i -g github-actions
+
+# run interactive manager
+# in a GitHub repository root
+ghactions -i python
+```
+
+Index: [index.yml](./index.yml)
+
+## How to use
