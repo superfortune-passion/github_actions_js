@@ -28,3 +28,17 @@ ghactions -i python
 Index: [index.yml](./index.yml)
 
 ## How to use
+- Set 'github-actions-managed' to false on manual edit to prevent step overwrite on update
+- User-added steps survive update as well
+- Deleted steps are restored on update, so make them empty instead of removing
+
+## Zen
+- Enforce best practices for versioning and changelog in a passive-aggressive way
+- Write Release and Pull Request notes in [Keep a Changelog](https://keepachangelog.com/en/1.0.0/) format
+- Follow [PEP 440](https://www.python.org/dev/peps/pep-0440/) versioning schema
+- Noone likes to write and assemble Release notes, so leave it to automation
+- Always leave a final decision to a human in case automation goes crazy
+- All actions use only Node.js 12 for speed and stability
+- Every action should have an additional manual trigger in case of trouble
+- Full compatibility with [nektos/act](https://github.com/nektos/act) for local execution
+- Do not try to build one-fits-all soultion, provide customization instead
