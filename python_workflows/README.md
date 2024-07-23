@@ -42,3 +42,19 @@ Index: [index.yml](./index.yml)
 - Every action should have an additional manual trigger in case of trouble
 - Full compatibility with [nektos/act](https://github.com/nektos/act) for local execution
 - Do not try to build one-fits-all soultion, provide customization instead
+
+## TODO
+- [ ] Add `pytest-cov` support
+
+## Secrets
+- `GPG_PRIVATE_KEY` - Key to sign commits https://docs.github.com/en/github/authenticating-to-github/generating-a-new-gpg-key
+- `GPG_PRIVATE_KEY_PASSPHRASE` - Passphrase for GPG private key
+- `PYPI_PASSWORD` - Password for `__token__` username for https://pypi.org/
+
+## Available workflows
+### Run style checks and unit tests
+Workflow: [on_push_check.yml](./on_push_check.yml)
+
+```bash
+# install this action to .github/workflows
+ghactions -i python -u on_push_check
