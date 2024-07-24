@@ -58,3 +58,17 @@ Workflow: [on_push_check.yml](./on_push_check.yml)
 ```bash
 # install this action to .github/workflows
 ghactions -i python -u on_push_check
+```
+
+- Starts on push to any branch
+- Installs package with `poetry`, `pipenv`, `tox` or `requirements[-dev].txt`
+- Caches installed Python dependencies
+- Runs `flake8` if it is installed
+- Runs `pylint` if it is installed
+- Runs `mypy` if it is installed
+- Runs `pyright` if `pyrightconfig.json` file exists
+- Runs `pytest` if it is installed
+
+
+### Update Pull Request labels
+Workflow: [on_pull_opened_or_edited.yml](./on_pull_opened_or_edited.yml)
