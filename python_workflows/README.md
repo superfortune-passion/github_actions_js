@@ -87,3 +87,17 @@ ghactions -i python -u on_pull_opened_or_edited
 
 
 ### Update Release from Pull Request
+Workflow: [on_pull_merged.yml](./on_pull_merged.yml)
+
+```bash
+# install this action to .github/workflows
+ghactions -i python -u on_pull_merged
+```
+
+- Starts on Pull Request merge for non-`release/*` branch
+- Creates or updates a Release draft for Pull Request base branch
+- Release draft notes are merged from existing notes and Pull Request notes
+- Each entry added from Pull Request notes contains a link to the Pull Request
+- Release draft suggested version is based on Release notes
+
+**Environment**
