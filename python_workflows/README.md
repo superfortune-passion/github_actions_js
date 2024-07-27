@@ -117,3 +117,18 @@ ghactions -i python -u on_release_published
 - Release notes must be in [Keep a Changelog](https://keepachangelog.com/en/1.0.0/) format
 - Creates a Release Pull Request from Release target branch with `release` label
 - If the release is not a prerelease, cleans up `Unreleased` section in `CHANGELOG.md`
+- Release Pull Request contains only version bump in `package.json` and updated `CHANGELOG.md`
+- Release Pull Request uses branch `release/<version>`
+- Signs commits if `GPG_PRIVATE_KEY` secret is set
+
+**Secrets**
+
+- `GPG_PRIVATE_KEY` - Key to sign commits https://docs.github.com/en/github/authenticating-to-github/generating-a-new-gpg-key
+- `GPG_PRIVATE_KEY_PASSPHRASE` - Passphrase for GPG private key
+
+
+### Publish to PyPI
+Workflow: [on_release_pull_merged.yml](./on_release_pull_merged.yml)
+
+```bash
+# install this action to .github/workflows
