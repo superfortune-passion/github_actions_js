@@ -132,3 +132,17 @@ Workflow: [on_release_pull_merged.yml](./on_release_pull_merged.yml)
 
 ```bash
 # install this action to .github/workflows
+ghactions -i python -u on_release_pull_merged
+```
+
+- Runs only if `PYPI_PASSWORD` secret is set
+- Starts on Pull Request merge for `release/*` branch
+- Uses Pull Request branch for deployment, so released version contains only changes
+  from base branch when Release had been published
+- Builds package if `build` script is available in `package.json`
+- Publishes new version to [PyPI](https://pypi.org/)
+
+**Secrets**
+
+- `PYPI_PASSWORD` - Password for `__token__` username for https://pypi.org/
+
