@@ -18,3 +18,12 @@ jobs:
       PIPENV_HIDE_EMOJIS: 1
       PIPENV_NOSPIN: 1
       PIPENV_IGNORE_VIRTUALENVS: 1
+      PYTHONUSERBASE: ${{ github.workspace }}/.cache/py-user-base
+    strategy:
+      matrix:
+        python-version:
+          - 3.11
+    steps:
+      - name: Add PYTHONUSERBASE to PATH
+        id: add-pythonuserbase
+        run: |
