@@ -8,3 +8,13 @@
 # - This comment is user-editable and is not updated automatically
 
 name: Run style checks and unit tests
+"on":
+  push: {}
+  workflow_dispatch: {}
+jobs:
+  check:
+    runs-on: ubuntu-latest
+    env:
+      PIPENV_HIDE_EMOJIS: 1
+      PIPENV_NOSPIN: 1
+      PIPENV_IGNORE_VIRTUALENVS: 1
