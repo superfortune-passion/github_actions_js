@@ -37,3 +37,12 @@ jobs:
         with:
           python-version: "${{ matrix.python-version }}"
       - name: Cache pip downloads
+        uses: actions/cache@v3
+        id: cache
+        with:
+          path: ${{ env.PYTHONUSERBASE }}
+          key: ${{ runner.os }}-${{ env.PYTHONUSERBASE }}-${{ matrix.python-version  }}-${{ hashFiles('./poetry.lock', './Pipfile.lock') }}
+          restore-keys: |
+            ${{ runner.os }}-${{ env.PYTHONUSERBASE }}-${{ matrix.python-version  }}-
+      - name: Install package
+        id: install
