@@ -46,3 +46,13 @@ jobs:
             ${{ runner.os }}-${{ env.PYTHONUSERBASE }}-${{ matrix.python-version  }}-
       - name: Install package
         id: install
+        run: |
+          if test -f "Pipfile.lock"; then
+              echo "Pipfile.lock found, installing using pipenv"
+              python -m pip install pipenv
+              python -m pipenv install --dev --deploy --system
+          fi
+          if test -f "poetry.lock"; then
+              echo "poetry.lock found, installing using poetry"
+              python -m pip install -U poetry
+              python -m poetry config virtualenvs.create false
