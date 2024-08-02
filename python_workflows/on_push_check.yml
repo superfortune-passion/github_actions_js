@@ -56,3 +56,13 @@ jobs:
               echo "poetry.lock found, installing using poetry"
               python -m pip install -U poetry
               python -m poetry config virtualenvs.create false
+              python -m poetry install -n
+          fi
+          if test -f "tox.ini"; then
+              echo "tox.ini found, installing using tox"
+              python -m pip install -U tox
+              python -m tox
+          fi
+          if test -f "requirements.txt"; then
+              echo "requirements.txt found, installing using pip"
+              python -m pip install -r requirements.txt
