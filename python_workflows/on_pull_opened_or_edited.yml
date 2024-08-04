@@ -1,0 +1,9 @@
+# This workflow provided by GitHub Actions Manager
+# Documentation: https://github.com/vemel/github_actions_js/blob/main/python_workflows/README.md
+#
+# - Starts on Pull Request opened or edited event
+# - Pull Request notes must be in [Keep a Changelog](https://keepachangelog.com/en/1.0.0/) format
+# - If Pull Request branch name is `release/*`, adds `release` label
+# - If Pull Request notes has `Removed` section, adds `major` label
+# - If Pull Request notes has `Added`, `Changed` or `Deprecated` sections, adds `minor` label
+# - Otherwise adds `patch` label
