@@ -124,3 +124,21 @@ jobs:
               })
               release = response.data;
               core.info(`Created Release draft ${release.name}`);
+            }
+
+            core.setOutput('id', release.id);
+            core.setOutput("url", release.html_url);
+            core.setOutput('tag', release.tag_name);
+            core.setOutput('name', release.name);
+            core.setOutput('body', release.body);
+      - name: Build Release notes
+        id: notes
+        if: steps.pull-request.outputs.result
+        uses: vemel/nextchange@latest
+        with:
+          set: ${{ steps.release.outputs.body }}
+          append: ${{ steps.pull-request.outputs.body }}
+          suffix: ${{ steps.pull-request.outputs.suffix }}
+      - name: Get suggested version
+        id: version
+        if: steps.pull-request.outputs.result
