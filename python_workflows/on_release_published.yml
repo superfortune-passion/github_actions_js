@@ -43,3 +43,18 @@ jobs:
                 owner: context.repo.owner,
                 repo: context.repo.repo
               });
+              for (let releaseItem of releasesResponse.data) {
+                if (releaseItem.tag_name !== tagName) continue;
+                release = releaseItem;
+                core.info(`Found release ${release.name}`);
+                break;
+              }
+            }
+            if (context.payload.release){
+              // get Release from event payload
+              release = context.payload.release;
+            }
+
+            if (!release) {
+              throw new Error(`Cannot find Release`);
+            }
