@@ -73,3 +73,18 @@ jobs:
         with:
           ref: ${{ steps.release.outputs.target }}
       - name: Update version
+        id: version
+        uses: vemel/nextversion@latest
+        with:
+          path: ./setup.cfg
+          type: pep440
+          result: ${{ steps.release.outputs.tag }}
+          update: |
+            ./setup.cfg
+            ./pyproject.toml
+      - name: Add new release to CHANGELOG.md
+        id: changelog
+        uses: vemel/nextchange@latest
+        with:
+          release: ${{ steps.version.outputs.result }}
+          clear: true
