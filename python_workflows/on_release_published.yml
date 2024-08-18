@@ -58,3 +58,18 @@ jobs:
             if (!release) {
               throw new Error(`Cannot find Release`);
             }
+
+            core.setOutput('target', release.target_commitish);
+            core.setOutput('branch', `release/${release.tag_name}`);
+            core.setOutput('id', release.id);
+            core.setOutput("url", release.html_url);
+            core.setOutput('tag', release.tag_name);
+            core.setOutput('name', release.name);
+            core.setOutput('body', release.body);
+            return true;
+      - name: Checkout Release target branch
+        id: checkout
+        uses: actions/checkout@v3
+        with:
+          ref: ${{ steps.release.outputs.target }}
+      - name: Update version
