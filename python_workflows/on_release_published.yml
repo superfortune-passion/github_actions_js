@@ -88,3 +88,18 @@ jobs:
         with:
           release: ${{ steps.version.outputs.result }}
           clear: true
+          set: ${{ steps.release.outputs.body }}
+      - name: Clear Unreleased in CHANGELOG.md
+        id: clear-unreleased
+        if: ${{ steps.version.outputs.is-prerelease == 'false' }}
+        uses: vemel/nextchange@latest
+        with:
+          release: Unreleased
+          clear: true
+      - name: Setup git credentials
+        id: setup-git
+        run: |
+          git config --local user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git config --local user.name "github-actions[bot]"
+      - name: Import GPG key
+        id: import-gpg
