@@ -118,3 +118,18 @@ jobs:
           git checkout -b $BRANCH
           git commit -am "Bump version to $VERSION"
           git push --set-upstream origin $BRANCH
+      - name: Create Pull Request
+        id: create-pull-request
+        uses: actions/github-script@v6
+        with:
+          script: |
+            const response = await github.pulls.create({
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              head: ${{ toJSON(steps.release.outputs.branch) }},
+              base: ${{ toJSON(steps.release.outputs.target) }},
+              title: "Release ${{ steps.version.outputs.result }}",
+              body: ${{ toJSON(steps.changelog.outputs.result) }}
+            });
+
+            const pullRequestNumber = response.data.number;
