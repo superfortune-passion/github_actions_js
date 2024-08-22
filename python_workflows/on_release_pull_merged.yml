@@ -1,0 +1,9 @@
+# This workflow provided by GitHub Actions Manager
+# Documentation: https://github.com/vemel/github_actions_js/blob/main/python_workflows/README.md
+#
+# - Runs only if `PYPI_PASSWORD` secret is set
+# - Starts on Pull Request merge for `release/*` branch
+# - Uses Pull Request branch for deployment, so released version contains only changes
+#   from base branch when Release had been published
+# - Builds package if `build` script is available in `package.json`
+# - Publishes new version to [PyPI](https://pypi.org/)
