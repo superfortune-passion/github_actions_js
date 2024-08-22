@@ -7,3 +7,14 @@
 #   from base branch when Release had been published
 # - Builds package if `build` script is available in `package.json`
 # - Publishes new version to [PyPI](https://pypi.org/)
+
+name: Publish to PyPI
+"on":
+  pull_request:
+    types:
+      - closed
+  workflow_dispatch:
+    inputs:
+      number:
+        description: Pull Request number
+        required: true
