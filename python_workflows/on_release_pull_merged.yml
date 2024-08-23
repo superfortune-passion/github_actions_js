@@ -28,3 +28,13 @@ jobs:
         id: pull-request
         if: env.PYPI_PASSWORD
         uses: actions/github-script@v6
+        with:
+          script: |
+            let pullRequest = null;
+            if (context.payload.inputs && context.payload.inputs.number) {
+              // find Pull Request by number fom input
+              const number = context.payload.inputs.number;
+              try {
+                pullRequest = (await github.pulls.get({
+                  owner: context.repo.owner,
+                  repo: context.repo.repo,
