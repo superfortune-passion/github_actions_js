@@ -38,3 +38,13 @@ jobs:
                 pullRequest = (await github.pulls.get({
                   owner: context.repo.owner,
                   repo: context.repo.repo,
+                  pull_number: number,
+                })).data;
+              } catch(e) {
+                core.error(`Cannot get Pull Request #${number}: ${e}`);
+                return;
+              }
+            } else {
+              // get Pull Request from event payload
+              pullRequest = context.payload.pull_request;
+            }
