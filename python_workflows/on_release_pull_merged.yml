@@ -58,3 +58,13 @@ jobs:
             if (!pullRequest.merged) {
               core.info(`Pull Request ${pullRequest.number} is not merged, skipping`);
               return;
+            }
+
+            // Stop if Pull Request branch name starts with `release`
+            const branch = pullRequest.head.ref;
+            if (!branch.startsWith('release')) {
+              core.info(`This is not a release branch ${branch}, skipping`);
+              return;
+            }
+
+            core.setOutput('branch', branch);
