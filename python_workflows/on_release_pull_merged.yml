@@ -78,3 +78,13 @@ jobs:
         id: checkout
         if: steps.pull-request.outputs.result
         uses: actions/checkout@v3
+        with:
+          ref: ${{ steps.pull-request.outputs.base }}
+      - name: Set up Python
+        uses: actions/setup-python@v3
+        id: setup-python
+        if: steps.pull-request.outputs.result
+        with:
+          python-version: 3.11
+      - name: Publish new version to PyPI
+        id: publish
