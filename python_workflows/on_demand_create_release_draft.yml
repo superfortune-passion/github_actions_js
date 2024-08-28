@@ -1,0 +1,12 @@
+# This workflow provided by GitHub Actions Manager project
+# Documentation: https://github.com/vemel/github_actions_js/blob/main/python_workflows/README.md
+#
+# - Starts only manually
+# - Can be used if you do not enforce Pull Request-based updates and commit directly to `target` branch
+# - Creates or updates a release draft for `target` branch
+# - Release notes are populated from `Unreleased` section of `CHANGELOG.md`
+# - Sets suggested version as `name` and `tag` of the Release
+
+name: Create Release draft
+"on":
+  workflow_dispatch:
