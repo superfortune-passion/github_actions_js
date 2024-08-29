@@ -10,3 +10,14 @@
 name: Create Release draft
 "on":
   workflow_dispatch:
+    inputs:
+      release:
+        description: "Release type: stable, rc, alpha, or beta"
+        required: true
+        default: stable
+jobs:
+  create-release-draft:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout Release target branch
+        id: checkout
