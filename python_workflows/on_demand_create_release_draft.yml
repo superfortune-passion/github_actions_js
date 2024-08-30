@@ -32,3 +32,14 @@ jobs:
         uses: actions/github-script@v6
         id: release
         with:
+          script: |
+            let release = null;
+            const baseBranch = ${{ toJSON(github.event.ref) }}.replace("refs/heads/", "");
+            const unreleased = ${{ toJSON(steps.unreleased.outputs.result) }};
+
+            // find existing relese draft for pull request base branch in first 100 releases
+            const releasesResponse = await github.repos.listReleases({
+              owner: context.repo.owner,
+              repo: context.repo.repo
+            })
+            for (let releaseItem of releasesResponse.data) {
