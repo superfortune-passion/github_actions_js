@@ -54,3 +54,15 @@ jobs:
             if (!release) {
               const response = await github.repos.createRelease({
                 owner: context.repo.owner,
+                repo: context.repo.repo,
+                tag_name: '0.0.0',
+                name: '0.0.0',
+                draft: true,
+                target_commitish: baseBranch,
+                body: ${{ toJSON(steps.unreleased.outputs.result) }},
+              })
+              release = response.data;
+              core.info(`Created Release draft ${release.name}`);
+            }
+
+            core.setOutput('id', release.id);
