@@ -66,3 +66,14 @@ jobs:
             }
 
             core.setOutput('id', release.id);
+            core.setOutput("url", release.html_url);
+            core.setOutput('tag', release.tag_name);
+            core.setOutput('name', release.name);
+            core.setOutput('body', unreleased);
+      - name: Analyze Release notes
+        id: notes
+        uses: vemel/nextchange@latest
+        with:
+          set: ${{ steps.release.outputs.body }}
+      - name: Get suggested version
+        id: version
