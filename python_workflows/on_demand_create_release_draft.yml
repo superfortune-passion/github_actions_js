@@ -77,3 +77,14 @@ jobs:
           set: ${{ steps.release.outputs.body }}
       - name: Get suggested version
         id: version
+        uses: vemel/nextversion@latest
+        with:
+          path: ./package.json
+          type: pep440
+          release: ${{ github.event.inputs.release }}
+          result: ${{ steps.notes.outputs.label }}
+      - name: Update release draft
+        id: update-release
+        uses: actions/github-script@v6
+        with:
+          script: |
