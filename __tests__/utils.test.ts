@@ -18,3 +18,8 @@ test("decapitalize", async () => {
 test("get version string", () => {
     expect(getVersionString() === "unknown").toBeFalsy();
 });
+
+test("get command name", () => {
+    expect(getCommandName()).toBeTruthy();
+    getCommandArgs();
+});
