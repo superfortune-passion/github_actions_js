@@ -23,3 +23,8 @@ test("get command name", () => {
     expect(getCommandName()).toBeTruthy();
     getCommandArgs();
 });
+
+test("get temp dir", () => {
+    const tempDir = getTempDir();
+    fs.rmSync(tempDir, { recursive: true, force: true });
+});
