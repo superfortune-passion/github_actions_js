@@ -28,3 +28,7 @@ test("get temp dir", () => {
     const tempDir = getTempDir();
     fs.rmSync(tempDir, { recursive: true, force: true });
 });
+
+test("yaml dump", () => {
+    expect(yamlDump([1, 2, 3])).toBe("- 1\n- 2\n- 3\n");
+});
