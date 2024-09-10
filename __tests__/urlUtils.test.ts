@@ -33,3 +33,11 @@ test("is GitHub URL", () => {
 test("is file URL", () => {
     expect(isFileURL("test")).toBe(false);
     expect(isFileURL("https://google.com")).toBe(false);
+    expect(isFileURL("https://github.com")).toBe(false);
+    expect(isFileURL("file:///home/user/")).toBe(true);
+});
+
+test("replace ref", () => {
+    expect(replaceRef("test", "newref")).toBe("test");
+    expect(replaceRef("https://google.com", "newref")).toBe(
+        "https://google.com"
