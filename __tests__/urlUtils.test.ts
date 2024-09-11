@@ -41,3 +41,12 @@ test("replace ref", () => {
     expect(replaceRef("test", "newref")).toBe("test");
     expect(replaceRef("https://google.com", "newref")).toBe(
         "https://google.com"
+    );
+    expect(replaceRef("file:///my/ref", "newref")).toBe("file:///my/ref");
+    expect(
+        replaceRef(
+            "https://github.com/psf/black/tree/master/.github/workflows",
+            "newref"
+        )
+    ).toBe("https://github.com/psf/black/tree/newref/.github/workflows");
+});
