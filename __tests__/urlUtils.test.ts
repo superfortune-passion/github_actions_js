@@ -50,3 +50,10 @@ test("replace ref", () => {
         )
     ).toBe("https://github.com/psf/black/tree/newref/.github/workflows");
 });
+
+test("highlight url", () => {
+    highlightURL("https://google.com");
+    highlightURL("https://github.com/psf/black/tree/newref/.github/workflows");
+    highlightURL("file:///test/ts");
+    highlightURL("test");
+});
