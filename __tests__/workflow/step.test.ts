@@ -30,3 +30,19 @@ describe("step", () => {
         ).toBeTruthy();
         expect(
             new Step({
+                with: { script: "// github-actions-managed: true\n" }
+            }).isManaged()
+        ).toBeTruthy();
+    });
+    test("make managed", () => {
+        expect(new Step({ id: "myid" }).makeManaged().data).toEqual({
+            id: "myid",
+            with: { "github-actions-managed": true }
+        });
+        expect(
+            new Step({
+                run: "\n\n# github-actions-managed: true\n"
+            }).makeManaged().data
+        ).toEqual({
+            run: "\n\n# github-actions-managed: true\n"
+        });
