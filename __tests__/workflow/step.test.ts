@@ -46,3 +46,19 @@ describe("step", () => {
         ).toEqual({
             run: "\n\n# github-actions-managed: true\n"
         });
+        expect(
+            new Step({
+                run: "myline"
+            }).makeManaged().data
+        ).toEqual({
+            run: "# github-actions-managed: true\nmyline"
+        });
+        expect(
+            new Step({
+                run: "myline\nother"
+            }).makeManaged().data
+        ).toEqual({
+            run: "# github-actions-managed: true\nmyline\nother"
+        });
+        expect(
+            new Step({
