@@ -78,3 +78,19 @@ describe("step", () => {
             with: { "github-actions-managed": true },
             name: "test"
         });
+    });
+
+    test("make non managed", () => {
+        expect(
+            new Step({
+                run: "# github-actions-managed: true\nmyline"
+            }).makeNonManaged().data
+        ).toEqual({
+            run: "myline"
+        });
+
+        expect(
+            new Step({
+                with: {
+                    script: "// github-actions-managed: true\nmyline\n  other",
+                    "github-actions-managed": true
