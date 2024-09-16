@@ -110,3 +110,19 @@ describe("step", () => {
     });
 
     test("clone", () => {
+        const step = new Step({ id: "test", with: { script: "asd" } });
+        expect(step.clone().id).toBe("test");
+    });
+
+    test("equals", () => {
+        const step = new Step({
+            run: "# github-actions-managed: true\nmyline"
+        });
+        expect(step.equals(step.clone())).toBeTruthy();
+        expect(step.equals(new Step({}))).toBeFalsy();
+    });
+
+    test("is same", () => {
+        expect(
+            new Step({
+                id: "test",
