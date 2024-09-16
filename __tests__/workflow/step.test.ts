@@ -94,3 +94,19 @@ describe("step", () => {
                 with: {
                     script: "// github-actions-managed: true\nmyline\n  other",
                     "github-actions-managed": true
+                }
+            }).makeNonManaged().data
+        ).toEqual({
+            with: { script: "myline\n  other" }
+        });
+
+        expect(
+            new Step({
+                run: "myline\nother"
+            }).makeNonManaged().data
+        ).toEqual({
+            run: "myline\nother"
+        });
+    });
+
+    test("clone", () => {
