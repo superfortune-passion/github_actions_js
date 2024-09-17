@@ -142,3 +142,19 @@ describe("step", () => {
                     name: "test2"
                 })
             )
+        ).toBeTruthy();
+        expect(
+            new Step({
+                name: "test2",
+                uses: "checkout@v2"
+            }).isSame(
+                new Step({
+                    uses: "checkout@v3"
+                })
+            )
+        ).toBeTruthy();
+        expect(
+            new Step({
+                name: "test2",
+                uses: "checkout@v2"
+            }).isSame(
