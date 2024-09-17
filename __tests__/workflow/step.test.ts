@@ -126,3 +126,19 @@ describe("step", () => {
         expect(
             new Step({
                 id: "test",
+                name: "test2"
+            }).isSame(
+                new Step({
+                    id: "test",
+                    name: "test3"
+                })
+            )
+        ).toBeTruthy();
+        expect(
+            new Step({
+                name: "test2"
+            }).isSame(
+                new Step({
+                    name: "test2"
+                })
+            )
