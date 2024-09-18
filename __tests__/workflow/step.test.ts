@@ -158,3 +158,17 @@ describe("step", () => {
                 name: "test2",
                 uses: "checkout@v2"
             }).isSame(
+                new Step({
+                    name: "test3",
+                    uses: "checkout@v3"
+                })
+            )
+        ).toBeFalsy();
+        expect(new Step({}).isSame(new Step({}))).toBeTruthy();
+        expect(
+            new Step({}).isSame(
+                new Step({ with: { "github-actions-managed": true } })
+            )
+        ).toBeTruthy();
+    });
+});
