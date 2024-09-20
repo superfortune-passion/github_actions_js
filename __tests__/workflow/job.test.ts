@@ -25,3 +25,17 @@ describe("job", () => {
 
         expect(clone.strategy).toEqual({ matrix: [1, 2, 3] });
         clone.strategy = { matrix: [1] };
+        clone.strategy = undefined;
+
+        expect(clone.steps.length).toBe(1);
+        clone.steps = [new Step({})];
+    });
+
+    test("merge steps", () => {
+        job.steps = [];
+        let steps = [new Step({ id: "remote1" })];
+        expect(job.mergeSteps(steps).map(i => i.data)).toEqual([
+            { id: "remote1" }
+        ]);
+
+        job.steps = [new Step({ name: "local1" })];
