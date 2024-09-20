@@ -39,3 +39,16 @@ describe("job", () => {
         ]);
 
         job.steps = [new Step({ name: "local1" })];
+        expect(job.mergeSteps(steps).map(i => i.data)).toEqual([
+            { name: "local1" },
+            { id: "remote1" }
+        ]);
+
+        job.steps = [
+            new Step({
+                id: "remote1",
+                run: "\n\n  # github-actions-managed: true \n\nkey: local"
+            }),
+            new Step({
+                id: "local11",
+                with: { "github-actions-managed": true, key: "local" }
