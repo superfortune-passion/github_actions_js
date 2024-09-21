@@ -52,3 +52,17 @@ describe("job", () => {
             new Step({
                 id: "local11",
                 with: { "github-actions-managed": true, key: "local" }
+            }),
+            new Step({
+                id: "local12",
+                with: { "github-actions-managed": true, key: "local" }
+            }),
+            new Step({
+                id: "remote2",
+                with: { "github-actions-managed": false, key: "local" }
+            }),
+            new Step({
+                id: "local21",
+                with: { "github-actions-managed": false, key: "local" }
+            }),
+            new Step({
