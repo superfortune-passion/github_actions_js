@@ -66,3 +66,16 @@ describe("job", () => {
                 with: { "github-actions-managed": false, key: "local" }
             }),
             new Step({
+                id: "local22",
+                with: { "github-actions-managed": true, key: "local" }
+            }),
+            new Step({
+                id: "remote3",
+                with: { "github-actions-managed": true, key: "local" }
+            })
+        ];
+        steps = [
+            new Step({
+                id: "remote1",
+                run: "\n# github-actions-managed: true\nkey: remote"
+            }),
