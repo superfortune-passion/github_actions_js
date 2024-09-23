@@ -106,3 +106,17 @@ describe("job", () => {
             },
             {
                 id: "local21",
+                with: {
+                    "github-actions-managed": false,
+                    key: "local"
+                }
+            },
+            {
+                id: "remote21",
+                with: {
+                    "github-actions-managed": true,
+                    key: "remote"
+                }
+            },
+            {
+                id: "remote3",
