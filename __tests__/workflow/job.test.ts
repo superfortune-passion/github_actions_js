@@ -120,3 +120,15 @@ describe("job", () => {
             },
             {
                 id: "remote3",
+                with: {
+                    "github-actions-managed": true,
+                    key: "remote"
+                }
+            }
+        ]);
+    });
+
+    test("clone", () => {
+        expect(job.clone().env).toEqual({ key: "value" });
+    });
+});
