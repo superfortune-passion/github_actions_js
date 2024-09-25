@@ -7,3 +7,12 @@ const renderResult = `# comment
 
 name: workflow
 "on":
+  event: {}
+jobs:
+  main:
+    runs-on: runner
+    env:
+      key: value
+    if: cond
+    steps:
+      - {}
