@@ -25,3 +25,12 @@ describe("workflow", () => {
             on: { event: {} },
             jobs: {
                 main: {
+                    "runs-on": "runner",
+                    env: { key: "value" },
+                    if: "cond",
+                    steps: [{}]
+                }
+            }
+        },
+        ["comment", "", "line2"]
+    );
