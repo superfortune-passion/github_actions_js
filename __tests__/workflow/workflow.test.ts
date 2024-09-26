@@ -16,3 +16,12 @@ jobs:
     if: cond
     steps:
       - {}
+`;
+
+describe("workflow", () => {
+    const workflow = new Workflow(
+        {
+            name: "workflow",
+            on: { event: {} },
+            jobs: {
+                main: {
