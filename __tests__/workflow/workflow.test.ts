@@ -41,3 +41,13 @@ describe("workflow", () => {
 
         expect(clone.triggers).toEqual({ event: {} });
         clone.triggers = {};
+
+        expect(clone.commentLines).toEqual(["comment", "", "line2"]);
+        clone.commentLines = [];
+        expect(clone.jobNames).toEqual(["main"]);
+        expect(clone.jobs.length).toBe(1);
+
+        expect(
+            new Workflow(
+                {
+                    name: "test",
