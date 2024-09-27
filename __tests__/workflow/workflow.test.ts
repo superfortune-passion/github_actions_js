@@ -34,3 +34,10 @@ describe("workflow", () => {
         },
         ["comment", "", "line2"]
     );
+    test("create", () => {
+        const clone = workflow.clone();
+        expect(clone.name).toBe("workflow");
+        clone.name = "test";
+
+        expect(clone.triggers).toEqual({ event: {} });
+        clone.triggers = {};
