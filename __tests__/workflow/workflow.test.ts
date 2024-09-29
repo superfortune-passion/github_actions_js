@@ -60,3 +60,12 @@ describe("workflow", () => {
                 },
                 []
             ).getJob("test").data
+        ).toEqual({
+            "runs-on": "ubuntu:latest",
+            steps: []
+        });
+        expect(clone.getJob("main").steps.length).toBe(1);
+        clone.setJob(new Job("main", { "runs-on": "test", steps: [] }));
+        new Workflow({ name: "test" }, []).setJob(
+            new Job("main", { "runs-on": "test", steps: [] })
+        );
