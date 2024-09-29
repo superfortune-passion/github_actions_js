@@ -51,3 +51,12 @@ describe("workflow", () => {
             new Workflow(
                 {
                     name: "test",
+                    jobs: {
+                        test: {
+                            "runs-on": "ubuntu:latest",
+                            steps: []
+                        }
+                    }
+                },
+                []
+            ).getJob("test").data
