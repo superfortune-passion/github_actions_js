@@ -69,3 +69,12 @@ describe("workflow", () => {
         new Workflow({ name: "test" }, []).setJob(
             new Job("main", { "runs-on": "test", steps: [] })
         );
+        clone.deleteJob("main");
+        expect(() => new Workflow({ name: "test" }, []).getJob("main")).toThrow(
+            Error
+        );
+    });
+
+    test("render", () => {
+        expect(workflow.render()).toBe(renderResult);
+    });
