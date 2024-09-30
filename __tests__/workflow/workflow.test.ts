@@ -78,3 +78,10 @@ describe("workflow", () => {
     test("render", () => {
         expect(workflow.render()).toBe(renderResult);
     });
+    test("from string", () => {
+        Workflow.fromString(renderResult);
+    });
+    test("clone", () => {
+        expect(workflow.clone().name).toBe("workflow");
+    });
+});
