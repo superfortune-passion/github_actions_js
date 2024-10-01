@@ -17,3 +17,12 @@ async function main(): Promise<void> {
         indexData,
         localPath
     );
+    const secrets: Array<ISecret> = [];
+    const workflowTexts: Array<string> = [];
+    workflowIndex.getAllWorkflows().forEach(resource => {
+        resource.data.secrets?.forEach(secret => {
+            const secretNames = secrets.map(i => i.name);
+            if (secretNames.includes(secret.name)) return;
+            secrets.push(secret);
+        });
+        const workflowPath = path.join(localPath, resource.data.url);
