@@ -35,3 +35,12 @@ async function main(): Promise<void> {
         workflow.job.steps.forEach(step => {
             if (!step.id) throw new Error(`Step ${step.name} has no id`);
             if (step.isManaged())
+                throw new Error(`Step ${step.name} is managed`);
+        });
+
+        const installString = `\`\`\`bash\n# install this action to .github/workflows\nghactions -i ${workflowIndex.data.id} -u ${resource.name}\n\`\`\``;
+        const description: string = [
+            installString,
+            resource.description ? resource.description.trimRight() : "",
+            resource.data.env
+                ? [
