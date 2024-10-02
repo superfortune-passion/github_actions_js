@@ -26,3 +26,12 @@ async function main(): Promise<void> {
             secrets.push(secret);
         });
         const workflowPath = path.join(localPath, resource.data.url);
+        const workflowContent = fs.readFileSync(workflowPath, {
+            encoding: UTF8
+        });
+        const workflowYAMLData = yaml.load(workflowContent) as IWorkflowData;
+
+        const workflow = new Workflow(workflowYAMLData, []);
+        workflow.job.steps.forEach(step => {
+            if (!step.id) throw new Error(`Step ${step.name} has no id`);
+            if (step.isManaged())
