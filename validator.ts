@@ -54,3 +54,12 @@ async function main(): Promise<void> {
                 : "",
             resource.data.secrets
                 ? [
+                      "**Secrets**",
+                      "",
+                      ...resource.data.secrets.map(
+                          secret =>
+                              `- \`${secret.name}\` - ${secret.description}`
+                      )
+                  ].join("\n")
+                : ""
+        ]
