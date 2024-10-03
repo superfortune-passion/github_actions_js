@@ -44,3 +44,13 @@ async function main(): Promise<void> {
             resource.description ? resource.description.trimRight() : "",
             resource.data.env
                 ? [
+                      "**Environment**",
+                      "",
+                      ...resource.data.env.map(
+                          env =>
+                              `- \`${env.name}\` - ${env.description} (default: \`${env.default}\`)`
+                      )
+                  ].join("\n")
+                : "",
+            resource.data.secrets
+                ? [
