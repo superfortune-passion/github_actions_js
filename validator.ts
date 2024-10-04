@@ -72,3 +72,12 @@ async function main(): Promise<void> {
     if (secrets.length) {
         console.log("## Secrets");
         secrets.forEach(secret => {
+            if (secret.description) {
+                console.log(`- \`${secret.name}\` - ${secret.description}`);
+            } else {
+                console.log(`- \`${secret.name}\``);
+            }
+        });
+        console.log("");
+    }
+    console.log("## Available workflows");
