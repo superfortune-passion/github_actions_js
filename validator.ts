@@ -63,3 +63,12 @@ async function main(): Promise<void> {
                   ].join("\n")
                 : ""
         ]
+            .filter(x => x)
+            .join("\n\n");
+        workflowTexts.push(
+            `### ${resource.title}\nWorkflow: [${resource.name}.yml](${resource.data.url})\n\n${description}`
+        );
+    });
+    if (secrets.length) {
+        console.log("## Secrets");
+        secrets.forEach(secret => {
