@@ -81,3 +81,11 @@ async function main(): Promise<void> {
         console.log("");
     }
     console.log("## Available workflows");
+    workflowTexts.forEach(text => console.log(text + "\n\n"));
+}
+
+if (typeof require !== "undefined" && require.main === module) {
+    main();
+}
+
+export default main;
