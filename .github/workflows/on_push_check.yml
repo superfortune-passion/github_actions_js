@@ -9,3 +9,13 @@
 # - Sends test coverage report to https://codecov.io/ if `CODECOV_TOKEN` secret is set
 #
 # Secrets:
+#   CODECOV_TOKEN - Token for https://codecov.io/ coverage report
+
+name: Run style checks and unit tests
+"on":
+  push: {}
+  workflow_dispatch: {}
+jobs:
+  check:
+    runs-on: ubuntu-latest
+    env:
