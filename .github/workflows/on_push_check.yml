@@ -19,3 +19,13 @@ jobs:
   check:
     runs-on: ubuntu-latest
     env:
+      LINT_SCRIPT: lint
+      TEST_SCRIPT: test
+      TEST_COVERAGE_SCRIPT: test-cov
+    strategy:
+      matrix:
+        node-version:
+          - 14
+    steps:
+      - name: Checkout current branch
+        id: checkout
