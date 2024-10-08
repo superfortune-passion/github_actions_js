@@ -50,3 +50,13 @@ jobs:
             }
             if (scripts.includes(process.env.TEST_SCRIPT)) {
               core.setOutput('test', process.env.TEST_SCRIPT);
+              result = true;
+            }
+            if (scripts.includes(process.env.TEST_COVERAGE_SCRIPT)) {
+              core.setOutput('test-cov', process.env.TEST_COVERAGE_SCRIPT);
+              result = true;
+            }
+            return result;
+      - name: Set up Node
+        id: setup-node
+        uses: actions/setup-node@v3
