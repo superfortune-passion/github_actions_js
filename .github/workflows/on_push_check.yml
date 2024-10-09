@@ -60,3 +60,14 @@ jobs:
       - name: Set up Node
         id: setup-node
         uses: actions/setup-node@v3
+        with:
+          github-actions-managed: true
+          node-version: ${{ matrix.node-version }}
+          registry-url: https://registry.npmjs.org/
+          cache: npm
+      - name: Install package
+        id: install
+        if: steps.scripts.outputs.result
+        run: |
+          # github-actions-managed: true
+          npm install -g npm
