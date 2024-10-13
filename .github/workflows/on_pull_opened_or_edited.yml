@@ -17,3 +17,13 @@ name: Update Pull Request labels
       - reopened
   workflow_dispatch:
     inputs:
+      number:
+        description: Pull Request number
+        required: true
+jobs:
+  update-pull-request-labels:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Get Pull Request
+        uses: actions/github-script@v6
+        id: pull-request
