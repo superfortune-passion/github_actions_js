@@ -27,3 +27,12 @@ jobs:
       - name: Get Pull Request
         uses: actions/github-script@v6
         id: pull-request
+        with:
+          script: |
+            // github-actions-managed: true
+            let pullRequest = null;
+            if (context.payload.inputs && context.payload.inputs.number) {
+              const number = context.payload.inputs.number;
+              // find Pull Request by number fom input
+              try {
+                pullRequest = (await github.pulls.get({
