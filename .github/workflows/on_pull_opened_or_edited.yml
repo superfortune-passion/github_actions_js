@@ -83,3 +83,11 @@ jobs:
             // add suggested label to Pull Request
             const newLabels = [...otherLabels, label];
             if (branch.startsWith('release/')) newLabels.push('release');
+            core.info(`New labels: ${newLabels}`);
+
+            await github.issues.setLabels({
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              issue_number: number,
+              labels: newLabels
+            })
