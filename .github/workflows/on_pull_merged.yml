@@ -73,3 +73,22 @@ jobs:
 
             core.setOutput('branch', branch);
             core.setOutput('base', pullRequest.base.ref);
+            core.setOutput('number', pullRequest.number);
+            core.setOutput('url', pullRequest.html_url);
+            core.setOutput('body', pullRequest.body);
+            core.setOutput('suffix', `[#${pullRequest.number}](${pullRequest.html_url})`);
+            return true;
+      - name: Checkout Pull Request base branch
+        id: checkout
+        if: steps.pull-request.outputs.result
+        uses: actions/checkout@v3
+        with:
+          github-actions-managed: true
+          ref: ${{ steps.pull-request.outputs.base }}
+      - name: Get Unreleased notes
+        id: unreleased
+        if: steps.pull-request.outputs.result
+        uses: vemel/nextchange@latest
+        with:
+          github-actions-managed: true
+          get: Unreleased
