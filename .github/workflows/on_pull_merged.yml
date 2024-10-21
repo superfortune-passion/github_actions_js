@@ -92,3 +92,22 @@ jobs:
         with:
           github-actions-managed: true
           get: Unreleased
+          sanitize: true
+      - name: Get or create Release draft
+        uses: actions/github-script@v6
+        id: release
+        if: steps.pull-request.outputs.result
+        with:
+          script: |
+            // github-actions-managed: true
+            let release = null;
+            const baseBranch = ${{ toJSON(steps.pull-request.outputs.base) }};
+
+            // find existing relese draft for pull request base branch in first 100 releases
+            const releasesResponse = await github.repos.listReleases({
+              owner: context.repo.owner,
+              repo: context.repo.repo
+            })
+            for (let releaseItem of releasesResponse.data) {
+              if (!releaseItem.draft) continue;
+              if (releaseItem.target_commitish !== baseBranch) continue;
