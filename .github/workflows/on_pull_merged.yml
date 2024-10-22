@@ -111,3 +111,22 @@ jobs:
             for (let releaseItem of releasesResponse.data) {
               if (!releaseItem.draft) continue;
               if (releaseItem.target_commitish !== baseBranch) continue;
+              release = releaseItem;
+              core.info(`Found existing release draft ${release.name}`);
+              break;
+            }
+
+            // create a release draft if there is none
+            if (!release) {
+              const response = await github.repos.createRelease({
+                owner: context.repo.owner,
+                repo: context.repo.repo,
+                tag_name: '0.0.0',
+                name: '0.0.0',
+                draft: true,
+                target_commitish: baseBranch,
+                body: ${{ toJSON(steps.unreleased.outputs.result) }},
+              })
+              release = response.data;
+              core.info(`Created Release draft ${release.name}`);
+            }
