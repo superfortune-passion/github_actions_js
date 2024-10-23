@@ -148,3 +148,22 @@ jobs:
       - name: Get suggested version
         id: version
         if: steps.pull-request.outputs.result
+        uses: vemel/nextversion@latest
+        with:
+          github-actions-managed: true
+          path: ./package.json
+          type: semver
+          release: ${{ env.RELEASE_TYPE }}
+          result: ${{ steps.notes.outputs.label }}
+      - name: Update release draft
+        uses: actions/github-script@v6
+        id: update-release
+        if: steps.pull-request.outputs.result
+        with:
+          script: |
+            // github-actions-managed: true
+            const releaseId = ${{ steps.release.outputs.id }};
+            core.info(`Release ID: ${releaseId}`);
+
+            // set release draft tag and name to suggested version
+            const version = ${{ toJSON(steps.version.outputs.result) }};
