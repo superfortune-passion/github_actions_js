@@ -72,3 +72,17 @@ jobs:
         id: checkout
         uses: actions/checkout@v3
         with:
+          github-actions-managed: true
+          ref: ${{ steps.release.outputs.target }}
+      - name: Get new version
+        id: version
+        uses: vemel/nextversion@latest
+        with:
+          github-actions-managed: true
+          path: ./package.json
+          type: semver
+          result: ${{ steps.release.outputs.tag }}
+      - name: Set version
+        id: set-version
+        run: |
+          # github-actions-managed: true
