@@ -86,3 +86,18 @@ jobs:
         id: set-version
         run: |
           # github-actions-managed: true
+          npm config set git-tag-version false
+          npm version ${{ steps.version.outputs.result }} --allow-same-version
+      - name: Add new release to CHANGELOG.md
+        id: changelog
+        uses: vemel/nextchange@latest
+        with:
+          github-actions-managed: true
+          release: ${{ steps.version.outputs.result }}
+          clear: true
+          set: ${{ steps.release.outputs.body }}
+      - name: Clear Unreleased in CHANGELOG.md
+        id: clear-unreleased
+        if: ${{ steps.version.outputs.is-prerelease == 'false' }}
+        uses: vemel/nextchange@latest
+        with:
