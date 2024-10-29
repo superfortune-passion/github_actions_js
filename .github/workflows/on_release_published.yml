@@ -116,3 +116,17 @@ jobs:
         uses: crazy-max/ghaction-import-gpg@v3
         with:
           github-actions-managed: true
+          gpg-private-key: ${{ env.GPG_PRIVATE_KEY }}
+          passphrase: ${{ env.GPG_PRIVATE_KEY_PASSPHRASE }}
+          git-user-signingkey: true
+          git-commit-gpgsign: true
+      - name: Commit changes
+        id: commit
+        run: |
+          # github-actions-managed: true
+          VERSION=${{ toJSON(steps.version.outputs.result) }}
+          BRANCH=${{ toJSON(steps.release.outputs.branch) }}
+          git checkout -b $BRANCH
+          git commit -am "Bump version to $VERSION"
+          git push --set-upstream origin $BRANCH
+      - name: Create Pull Request
