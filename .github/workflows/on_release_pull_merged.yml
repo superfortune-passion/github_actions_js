@@ -52,3 +52,17 @@ jobs:
             } else {
               // get Pull Request from event payload
               pullRequest = context.payload.pull_request;
+            }
+
+            if (!pullRequest) {
+              core.error(`Cannot find Pull Request`);
+              return;
+            }
+
+            // Stop if Pull request is not merged
+            if (!pullRequest.merged) {
+              core.info(`Pull Request ${pullRequest.number} is not merged, skipping`);
+              return;
+            }
+
+            // Stop if Pull Request branch name starts with `release`
