@@ -106,3 +106,17 @@ jobs:
         uses: actions/setup-node@v3
         id: setup-node
         if: steps.pull-request.outputs.result
+        with:
+          github-actions-managed: true
+          registry-url: https://registry.npmjs.org/
+          node-version: 18
+      - name: Install package
+        id: install
+        if: steps.pull-request.outputs.result
+        run: |
+          # github-actions-managed: true
+          npm install -g npm
+          npm ci
+      - name: Build package
+        id: build
+        if: steps.pull-request.outputs.result && steps.scripts.outputs.build
