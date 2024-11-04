@@ -120,3 +120,15 @@ jobs:
       - name: Build package
         id: build
         if: steps.pull-request.outputs.result && steps.scripts.outputs.build
+        run: |
+          # github-actions-managed: true
+          echo "Running: npm run ${{ steps.scripts.outputs.build }}"
+          npm run ${{ steps.scripts.outputs.build }}
+      - name: Publish new version to NPM
+        id: publish
+        if: steps.pull-request.outputs.result
+        env:
+          NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
+        run: |
+          # github-actions-managed: true
+          npm publish --access public --verbose
