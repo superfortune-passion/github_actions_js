@@ -94,3 +94,14 @@ jobs:
         id: update-release
         uses: actions/github-script@v6
         with:
+          script: |
+            // github-actions-managed: true
+            const releaseId = ${{ steps.release.outputs.id }};
+            core.info(`Release ID: ${releaseId}`);
+
+            // set release draft tag and name to suggested version
+            const version = ${{ toJSON(steps.version.outputs.result) }};
+            core.info(`Release version: ${version}`);
+
+            const body = ${{ toJSON(steps.notes.outputs.result) }};
+            core.info(`Release body: ${body}`);
