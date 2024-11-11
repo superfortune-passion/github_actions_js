@@ -82,3 +82,15 @@ jobs:
           github-actions-managed: true
           set: ${{ steps.release.outputs.body }}
       - name: Get suggested version
+        id: version
+        uses: vemel/nextversion@latest
+        with:
+          github-actions-managed: true
+          path: ./package.json
+          type: semver
+          release: ${{ github.event.inputs.release }}
+          result: ${{ steps.notes.outputs.label }}
+      - name: Update release draft
+        id: update-release
+        uses: actions/github-script@v6
+        with:
