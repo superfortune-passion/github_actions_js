@@ -105,3 +105,15 @@ jobs:
 
             const body = ${{ toJSON(steps.notes.outputs.result) }};
             core.info(`Release body: ${body}`);
+
+            const response = await github.repos.updateRelease({
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              release_id: releaseId,
+              tag_name: version,
+              name: version,
+              draft: true,
+              body: body,
+              prerelease: ${{ steps.version.outputs.is-prerelease }},
+            });
+            core.info(`Release URL: ${response.data.html_url}`);
