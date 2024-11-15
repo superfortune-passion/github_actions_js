@@ -2,3 +2,5 @@
     "pull_request": {
         "head_commit": {
             "message": "Merge pull request #1"
+        }
+    }
