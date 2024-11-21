@@ -36,3 +36,11 @@
             "type": "User",
             "site_admin": false
         },
+        "assets": [
+            {
+                "url": "https://api.github.com/repos/octocat/Hello-World/releases/assets/1",
+                "browser_download_url": "https://github.com/octocat/Hello-World/releases/download/v1.0.0/example.zip",
+                "id": 1,
+                "node_id": "MDEyOlJlbGVhc2VBc3NldDE=",
+                "name": "example.zip",
+                "label": "short description",
