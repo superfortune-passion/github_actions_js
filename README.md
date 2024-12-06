@@ -26,3 +26,17 @@ and [Rust](https://github.com/actions-rs/example) projects.
 - [GitHub Actions Manager](#github-actions-manager)
   - [Basic usage](#basic-usage)
   - [Automated automation?](#automated-automation)
+  - [Let's start today](#lets-start-today)
+  - [Advanced usage](#advanced-usage)
+    - [Simple, no-force update](#simple-no-force-update)
+    - [Force update](#force-update)
+    - [CLI arguments](#cli-arguments)
+  - [Version 1.0.0 checklist](#version-100-checklist)
+  - [Versioning](#versioning)
+  - [Latest changes](#latest-changes)
+
+<img src="ghactions.png" alt="GitHub Actions Manager" width="400"/>
+
+## Basic usage
+
+```bash
