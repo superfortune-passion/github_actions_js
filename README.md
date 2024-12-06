@@ -40,3 +40,16 @@ and [Rust](https://github.com/actions-rs/example) projects.
 ## Basic usage
 
 ```bash
+# install globally or locally
+npm i -g github-actions
+# npm i --save-dev github-actions
+
+# run interactive manager
+# in a GitHub repository root
+ghactions
+
+# or check how to run non-interactively
+ghactions --help
+```
+
+## Automated automation?
