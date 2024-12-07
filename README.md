@@ -67,3 +67,17 @@ But imagine, what if we could...
 - manage our GitHub Actions the same way we manage npm dependencies
 - adapt CI/CD for different projects to our needs and still keep them in sync
 - share the best CI/CD practices and collaborate to raise the bar even higher
+
+And finally, what if we could add these best practices for a new project with a single command.
+
+## Let's start today
+- CI/CD for `Node.js` projects [installation guide](./nodejs_workflows/README.md)
+- CI/CD for `Python` projects [installation guide](./python_workflows_py/README.md)
+- CI/CD for `Rust` projects by [@actions-rs](https://github.com/actions-rs/example)
+- CI/CD for `Go` projects by [@mvdan](https://github.com/mvdan/github-actions-golang)
+- CI/CD for `Julia` projects by [@julia-actions](https://github.com/julia-actions/Example.jl)
+- CI/CD for `Terraform` projects by [@dflook](https://github.com/dflook/terraform-github-actions)
+- Or provide path to any GitHub repository to clone their workflows (run `ghactions`, then select `From GitHub URL`)
+- Or even clone workflows from your local path (run `ghactions`, then select `From directory`)
+
+## Advanced usage
