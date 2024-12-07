@@ -53,3 +53,17 @@ ghactions --help
 ```
 
 ## Automated automation?
+
+Yes, why not! Even small projects nowadays have at least simple CI/CD to enforce best practices
+or just to avoid boring release management. Thanks to [GitHub Actions](https://github.com/features/actions),
+it is super easy to kickstart an automation for a new project in minutes.
+
+However, every project CI/CD has to be set up and updated separately,
+even though they have a lot in common. So, instead of making our life easier,
+CI/CD adds a new folder in a project to keep an eye on.
+
+But imagine, what if we could...
+
+- manage our GitHub Actions the same way we manage npm dependencies
+- adapt CI/CD for different projects to our needs and still keep them in sync
+- share the best CI/CD practices and collaborate to raise the bar even higher
