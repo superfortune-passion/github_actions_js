@@ -81,3 +81,18 @@ And finally, what if we could add these best practices for a new project with a 
 - Or even clone workflows from your local path (run `ghactions`, then select `From directory`)
 
 ## Advanced usage
+
+### Simple, no-force update
+
+- `jobs.*` are added fom remote
+- `jobs.*.steps` that are `github-actions-managed` are updated from remote or removed if they do not exist remotely
+- `jobs.*.steps` that are not `github-actions-managed` are kept untouched and preserve their position in workflow
+- `jobs.*.steps` that exist only remotely are added to workflow to correct position, so to remove step, make in not managed and run empty `run` command to it, keep `id` the same.
+
+### Force update
+
+- Top comment in YAML file is replaced with remote
+- `jobs.*` are deleted if they do not exist remotely
+- `name` workflow name is replaced with remote
+- `on` triggers are replaced with remote
+- `jobs.*.env` is replaced with remote
