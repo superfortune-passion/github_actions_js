@@ -110,3 +110,17 @@ And finally, what if we could add these best practices for a new project with a 
 | `-p <path>` | `--path <path>` | current workdir | Path to GitHub project root |
 | `-u` | `--update` | | Apply suggested changes |
 | `-f` | `--force` | | Update user-managed workflow parts |
+| `-l` | `--list` | | List available workflows |
+| `-d` | `--diff` | | Show diff for update and check runs |
+| `-c` | `--clean` | | Do not add `github-actions-managed` marker to workflow steps |
+| `-h` | `--help` | | Print this usage guide |
+| `-v` | `--version` | | Show package version |
+
+## Version 1.0.0 checklist
+- [x] Unify `check` and `update` reports
+- [x] Support user top comment in workflows
+- [x] Add custom indexes support
+- [x] Add `--list` argument to list workflows in index
+- [x] Add `--path` argument to allow running not for a repository root
+- [x] Smart diff
+- [x] Interactive CLI
