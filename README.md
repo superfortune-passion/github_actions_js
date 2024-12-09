@@ -96,3 +96,17 @@ And finally, what if we could add these best practices for a new project with a 
 - `name` workflow name is replaced with remote
 - `on` triggers are replaced with remote
 - `jobs.*.env` is replaced with remote
+- `jobs.*.strategy` is replaced with remote
+- `jobs.*.runs-on` is replaced with remote
+- `jobs.*.if` is replaced with remote
+
+### CLI arguments
+
+| Short | Long | Default | Description |
+| - | - | - | - |
+| `-n <name>[ <name>]*` | `--names <name>[ <name>]*` | interactive mode | Workflow name `<name>.yml`, `all`, or `installed` |
+| `-i <url>` | `--index <url>` | `<GitHub URL>` / `file:///url` / `node` / `python` | Link to workflows directory `.../.github/workflows` |
+| `-r <version>` | `--ref <version>` | | Update workflows to a specific tag/branch |
+| `-p <path>` | `--path <path>` | current workdir | Path to GitHub project root |
+| `-u` | `--update` | | Apply suggested changes |
+| `-f` | `--force` | | Update user-managed workflow parts |
