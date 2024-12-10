@@ -124,3 +124,16 @@ And finally, what if we could add these best practices for a new project with a 
 - [x] Add `--path` argument to allow running not for a repository root
 - [x] Smart diff
 - [x] Interactive CLI
+- [x] Generator for index READMEs
+- [x] Add `--clean` CLI flag to remove `github-actions-managed` flags
+- [ ] Interactive updates selection
+- [ ] Check workflow name and updates on index load
+
+## Versioning
+
+`github-actions` adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
+
+## Latest changes
+
+Full changelog can be found in [Changelog](./CHANGELOG.md).
+Release notes can be found in [Releases](./releases).
