@@ -19,3 +19,9 @@ Please note that this project is released with a [Contributor Code of Conduct][c
 5. Make your change, add tests, and make sure the tests still pass
 6. Push to your fork and [submit a pull request][pr]
 7. Pat your self on the back and wait for your pull request to be reviewed and merged.
+
+Here are a few things you can do that will increase the likelihood of your pull request being accepted:
+
+- Write tests.
+- Keep your change as focused as possible. If there are multiple changes you would like to make that are not dependent upon each other, consider submitting them as separate pull requests.
+- Write a [good commit message](http://tbaggery.com/2008/04/19/a-note-about-git-commit-messages.html).
