@@ -15,3 +15,19 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - Workflows for [Terraform](https://github.com/dflook/terraform-github-actions) projects
 - Workflows for [Julia](https://github.com/julia-actions/Example.jl) projects
 - Multiple jobs in one workflow support
+- Autocomplete repository root GitHub URLs with `/tree/master/.github/workflows`
+
+### Fixed
+- Suggested `--force` updates were not showing step/job names correctly
+- Stored indexes are trimmed to the last 20 used
+- Steps with the same data are considered the same
+- Steps diff for added/removed steps was incorrect
+- Accept `*.yaml` files as workflows
+- Mark manually added items in interactive mode
+
+## [0.8.0]
+### Added
+- Support `file:///` protocol for index URL
+- Support any GitHub repositories as index
+- Interactive mode allows to choose GitHub repo
+- Interactive mode allows to choose local directory
