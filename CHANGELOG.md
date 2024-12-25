@@ -128,3 +128,20 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ### Changed
 - `[cli]` removed hardcoded workflow names
 - `[cli]` remote workflow steps are always marked as managed
+
+### Fixed
+- `[on_release_published.py]` uses `setup.cfg` file as a source of truth for version
+- `[on_pull_opened_or_edited]` is triggered on Pull Request ropen as well
+- `[on_release_published]` assigns labels to created Pull Request
+- `[on_demand_create_release_draft]` sets `release.is_prerelease` flag correctly
+- `[on_pull_merged]` sets `release.is_prerelease` flag correctly
+
+## [0.2.0]
+### Added
+- `[cli]` Workflow top comment can be changed by user, overwrite with `--force` flag
+- `[cli]` massive logging facelift, cleaner changes description
+- `[cli]` `--check` can be combined with `--force` flag to check force update result
+- `[cli]` `// github-actions-managed: false` can be added to `with.script` lines to prevent step update
+
+### Changed
+- `[cli]` update does not apply if workflow has errors
