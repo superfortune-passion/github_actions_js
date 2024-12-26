@@ -145,3 +145,19 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### Changed
 - `[cli]` update does not apply if workflow has errors
+- `[cli]` check fails if workflows has duplicated step ids
+
+### Fixed
+- `[cli]` show correct `ghactions_py` command in output for Python projects
+- `[on_push_check]` install latest `npm` before package installation
+- `[on_push_check]` use `npm ci` instead of `npm install`
+- `[on_release_pull_merged]` install latest `npm` before package installation
+- `[on_release_pull_merged]` fix gettng inputs for manual run
+- `[on_release_pull_merged]` use `npm ci` instead of `npm install`
+- `[on_release_published]` fix getting inputs for manual run
+
+## [0.1.0]
+### Added
+- `[cli]` `--check` flag to check if workflows are ready for updates
+- `[on_Push_check]` can run on multiple Node.js versions
+- `[cli]` `ghactions_py` command to generate Python workflows
