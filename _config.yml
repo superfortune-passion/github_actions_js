@@ -9,3 +9,5 @@ relative_links:
 include:
   - README.md
   - nodejs_workflows/README.md
+  - python_workflows/README.md
+  - CONTRIBUTING.md
